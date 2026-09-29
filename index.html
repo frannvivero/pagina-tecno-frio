@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecno Frío | Servicio técnico en refrigeración</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0072BB 0%, #4FC3F7 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .logo-container {
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.4;
+        }
+
+        h2 {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .social-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .social-icon img {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 10px;
+        }
+
+        .instagram-icon {
+            width: 60px;
+            height: 60px;
+        }
+
+        .social-icon span {
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .google-review {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .google-review:hover {
+            transform: scale(1.05);
+        }
+
+        .google-review img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .google-review span {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 20px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+
+            .logo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .social-icon img {
+                width: 55px;
+                height: 55px;
+            }
+
+            .instagram-icon {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="source/logo.png" alt="Tecno Frío Logo" class="logo">
+        </div>
+
+        <h1>Tecno Frío | Servicio técnico en refrigeración.</h1>
+
+        <h2>Redes Sociales</h2>
+
+        <div class="social-icons">
+            <a href="https://wa.me/5493454480828" class="social-icon" target="_blank">
+                <img src="source/whatsapp_icon.png" alt="WhatsApp" class="whatsapp-icon">
+                <span>WhatsApp</span>
+            </a>
+            <a href="https://www.instagram.com/tecnofriofederal" class="social-icon" target="_blank">
+                <img src="source/Instagram_icon.png" alt="Instagram" class="instagram-icon">
+                <span>Instagram</span>
+            </a>
+        </div>
+
+        <a href="https://g.page/r/CasemWSsoOOBEBM/review" class="google-review" target="_blank">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNaDHc8jKtJip5UIxjJdxU_n_iOfDRrzkhyL-nq6qIhg&s=10" alt="Google Maps">
+            <span>Deja una reseña en Google Maps</span>
+        </a>
+    </div>
+</body>
+</html>
