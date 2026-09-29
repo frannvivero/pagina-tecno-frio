@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabajos Realizados | Tecno Frío</title>
+    <link rel="icon" type="image/png" href="source/logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #F8FAFC;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748B;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            transition: color 0.2s ease;
+        }
+
+        .back-button:hover {
+            color: #0F172A;
+        }
+
+        h1 {
+            color: #0F172A;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #64748B;
+            font-size: 16px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid #E2E8F0;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            aspect-ratio: 1;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: #E2E8F0;
+        }
+
+        @media (min-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .gallery {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 24px;
+            }
+
+            h1 {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-button">← Volver</a>
+            <h1>Trabajos Realizados</h1>
+            <p class="subtitle">Instalaciones, reparaciones y mantenimiento de refrigeración</p>
+        </div>
+
+        <div class="gallery">
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (1).jpg')">
+                <img src="source/trabajos/trabajo (1).jpg" alt="Trabajo 1" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (2).jpg')">
+                <img src="source/trabajos/trabajo (2).jpg" alt="Trabajo 2" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (3).jpg')">
+                <img src="source/trabajos/trabajo (3).jpg" alt="Trabajo 3" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (4).jpg')">
+                <img src="source/trabajos/trabajo (4).jpg" alt="Trabajo 4" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (5).jpg')">
+                <img src="source/trabajos/trabajo (5).jpg" alt="Trabajo 5" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (6).jpg')">
+                <img src="source/trabajos/trabajo (6).jpg" alt="Trabajo 6" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (7).jpg')">
+                <img src="source/trabajos/trabajo (7).jpg" alt="Trabajo 7" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (8).jpg')">
+                <img src="source/trabajos/trabajo (8).jpg" alt="Trabajo 8" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (9).jpg')">
+                <img src="source/trabajos/trabajo (9).jpg" alt="Trabajo 9" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (10).jpg')">
+                <img src="source/trabajos/trabajo (10).jpg" alt="Trabajo 10" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (11).jpg')">
+                <img src="source/trabajos/trabajo (11).jpg" alt="Trabajo 11" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (12).jpg')">
+                <img src="source/trabajos/trabajo (12).jpg" alt="Trabajo 12" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (13).jpg')">
+                <img src="source/trabajos/trabajo (13).jpg" alt="Trabajo 13" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (14).jpg')">
+                <img src="source/trabajos/trabajo (14).jpg" alt="Trabajo 14" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (15).jpg')">
+                <img src="source/trabajos/trabajo (15).jpg" alt="Trabajo 15" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (16).jpg')">
+                <img src="source/trabajos/trabajo (16).jpg" alt="Trabajo 16" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (17).jpg')">
+                <img src="source/trabajos/trabajo (17).jpg" alt="Trabajo 17" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (18).jpg')">
+                <img src="source/trabajos/trabajo (18).jpg" alt="Trabajo 18" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (19).jpg')">
+                <img src="source/trabajos/trabajo (19).jpg" alt="Trabajo 19" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (20).jpg')">
+                <img src="source/trabajos/trabajo (20).jpg" alt="Trabajo 20" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (21).jpg')">
+                <img src="source/trabajos/trabajo (21).jpg" alt="Trabajo 21" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (22).jpg')">
+                <img src="source/trabajos/trabajo (22).jpg" alt="Trabajo 22" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (23).jpg')">
+                <img src="source/trabajos/trabajo (23).jpg" alt="Trabajo 23" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (24).jpg')">
+                <img src="source/trabajos/trabajo (24).jpg" alt="Trabajo 24" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (25).jpg')">
+                <img src="source/trabajos/trabajo (25).jpg" alt="Trabajo 25" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (26).jpg')">
+                <img src="source/trabajos/trabajo (26).jpg" alt="Trabajo 26" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (27).jpg')">
+                <img src="source/trabajos/trabajo (27).jpg" alt="Trabajo 27" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (28).JPG')">
+                <img src="source/trabajos/trabajo (28).JPG" alt="Trabajo 28" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (29).JPG')">
+                <img src="source/trabajos/trabajo (29).JPG" alt="Trabajo 29" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (30).JPG')">
+                <img src="source/trabajos/trabajo (30).JPG" alt="Trabajo 30" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (31).JPG')">
+                <img src="source/trabajos/trabajo (31).JPG" alt="Trabajo 31" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (32).JPG')">
+                <img src="source/trabajos/trabajo (32).JPG" alt="Trabajo 32" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (33).JPG')">
+                <img src="source/trabajos/trabajo (33).JPG" alt="Trabajo 33" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (34).JPG')">
+                <img src="source/trabajos/trabajo (34).JPG" alt="Trabajo 34" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (35).JPG')">
+                <img src="source/trabajos/trabajo (35).JPG" alt="Trabajo 35" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (36).JPG')">
+                <img src="source/trabajos/trabajo (36).JPG" alt="Trabajo 36" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (37).JPG')">
+                <img src="source/trabajos/trabajo (37).JPG" alt="Trabajo 37" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (38).JPG')">
+                <img src="source/trabajos/trabajo (38).JPG" alt="Trabajo 38" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (39).JPG')">
+                <img src="source/trabajos/trabajo (39).JPG" alt="Trabajo 39" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (40).JPG')">
+                <img src="source/trabajos/trabajo (40).JPG" alt="Trabajo 40" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (41).JPG')">
+                <img src="source/trabajos/trabajo (41).JPG" alt="Trabajo 41" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (42).JPG')">
+                <img src="source/trabajos/trabajo (42).JPG" alt="Trabajo 42" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (43).JPG')">
+                <img src="source/trabajos/trabajo (43).JPG" alt="Trabajo 43" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (44).JPG')">
+                <img src="source/trabajos/trabajo (44).JPG" alt="Trabajo 44" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (45).JPG')">
+                <img src="source/trabajos/trabajo (45).JPG" alt="Trabajo 45" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (46).JPG')">
+                <img src="source/trabajos/trabajo (46).JPG" alt="Trabajo 46" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (47).JPG')">
+                <img src="source/trabajos/trabajo (47).JPG" alt="Trabajo 47" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (48).JPG')">
+                <img src="source/trabajos/trabajo (48).JPG" alt="Trabajo 48" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (49).JPG')">
+                <img src="source/trabajos/trabajo (49).JPG" alt="Trabajo 49" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (50).JPG')">
+                <img src="source/trabajos/trabajo (50).JPG" alt="Trabajo 50" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (51).JPG')">
+                <img src="source/trabajos/trabajo (51).JPG" alt="Trabajo 51" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (52).JPG')">
+                <img src="source/trabajos/trabajo (52).JPG" alt="Trabajo 52" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (53).JPG')">
+                <img src="source/trabajos/trabajo (53).JPG" alt="Trabajo 53" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (54).JPG')">
+                <img src="source/trabajos/trabajo (54).JPG" alt="Trabajo 54" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (55).JPG')">
+                <img src="source/trabajos/trabajo (55).JPG" alt="Trabajo 55" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (56).JPG')">
+                <img src="source/trabajos/trabajo (56).JPG" alt="Trabajo 56" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (57).JPG')">
+                <img src="source/trabajos/trabajo (57).JPG" alt="Trabajo 57" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (58).jpg')">
+                <img src="source/trabajos/trabajo (58).jpg" alt="Trabajo 58" loading="lazy">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal" onclick="closeModal()">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <img class="modal-content" id="modal-image" src="" alt="Imagen ampliada">
+    </div>
+
+    <script>
+        function openModal(imageSrc) {
+            const modal = document.getElementById('modal');
+            const modalImage = document.getElementById('modal-image');
+            modalImage.src = imageSrc;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
