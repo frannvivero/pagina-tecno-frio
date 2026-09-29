@@ -30,6 +30,22 @@
             width: 100%;
         }
 
+        .main-wrapper {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .left-column {
+            width: 100%;
+        }
+
+        .right-column {
+            width: 100%;
+        }
+
         .logo-container {
             margin-bottom: 25px;
         }
@@ -208,6 +224,46 @@
             margin-top: 20px;
             font-size: 13px;
             color: #64748B;
+            text-align: center;
+        }
+
+        .footer-container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        @media (min-width: 900px) {
+            .main-wrapper {
+                flex-direction: row;
+                max-width: 1050px;
+                align-items: flex-start;
+                justify-content: center;
+                gap: 48px;
+                padding: 40px 20px;
+            }
+
+            .left-column {
+                flex: 1;
+                max-width: 460px;
+            }
+
+            .right-column {
+                flex: 1;
+                max-width: 520px;
+                margin-top: 0;
+            }
+
+            .footer-container {
+                max-width: 1050px;
+            }
+        }
+
+        @media (max-width: 899px) {
+            .right-column {
+                margin-top: 28px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -255,86 +311,92 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo-container">
-            <img src="source/logo.png" alt="Tecno Frío Logo" class="logo">
-        </div>
-
-        <h1>Tecno Frío</h1>
-        <p style="font-size: 15px; color: #334155; font-weight: 500; margin-bottom: 4px;">Servicio Técnico en Refrigeración</p>
-        <p style="font-size: 13.5px; color: #64748B; display: flex; align-items: center; justify-content: center; gap: 4px; margin-bottom: 20px;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="#2563EB" style="vertical-align: -2px; margin-right: 4px;">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/>
-            </svg>
-            Federal, Entre Ríos
-        </p>
-
-        <div class="tags">
-            <span class="tag">❄️ Aire Acondicionado</span>
-            <span class="tag">🔧 Heladeras Comerciales y Familiares</span>
-        </div>
-
-        <div class="links-container">
-            <a href="https://wa.me/5493454480828" class="link-card whatsapp" target="_blank">
-                <div class="icon-container">
-                    <img src="https://play-lh.googleusercontent.com/Gqxk4T0uZsDwFp07DE-508hkyvcNmgFuRwPiwTEfF7D7OzGv1FdHDzEyMxNsSBZLOJlGpe3ULvVM2RgrRAlBqA=w240-h480-rw" alt="WhatsApp" style="border-radius: 8px;">
+    <div class="main-wrapper">
+        <div class="left-column">
+            <div class="container">
+                <div class="logo-container">
+                    <img src="source/logo.png" alt="Tecno Frío Logo" class="logo">
                 </div>
-                <div class="link-card-content">
-                    <div class="link-card-title">Chatear por WhatsApp</div>
-                    <div class="link-card-subtitle">Presupuestos y consultas inmediatas</div>
-                </div>
-                <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </a>
 
-            <a href="https://www.instagram.com/tecnofriofederal" class="link-card instagram" target="_blank">
-                <div class="icon-container">
-                    <img src="source/Instagram_icon.png" alt="Instagram">
-                </div>
-                <div class="link-card-content">
-                    <div class="link-card-title">Seguinos en Instagram</div>
-                    <div class="link-card-subtitle">Novedades y trabajos</div>
-                </div>
-                <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </a>
-
-            <a href="https://g.page/r/CasemWSsoOOBEBM/review" class="link-card google" target="_blank">
-                <div class="icon-container">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Google_Maps_icon_%282020%29.svg" alt="Google Maps">
-                </div>
-                <div class="link-card-content">
-                    <div class="link-card-title">Dejanos tu reseña en Google</div>
-                    <div class="link-card-subtitle">Tu opinión nos ayuda a crecer</div>
-                </div>
-                <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </a>
-
-            <a href="trabajos.html" class="link-card trabajos">
-                <div class="icon-container">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M23 19C23 19.5304 22.7893 20.0391 22.4142 20.4142C22.0391 20.7893 21.5304 21 21 21H3C2.46957 21 1.96086 20.7893 1.58579 20.4142C1.21071 20.0391 1 19.5304 1 19V8C1 7.46957 1.21071 6.96086 1.58579 6.58579C1.96086 6.21071 2.46957 6 3 6H7L9 3H15L17 6H21C21.5304 6 22.0391 6.21071 22.4142 6.58579C22.7893 6.96086 23 7.46957 23 8V19Z" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <circle cx="12" cy="13" r="4" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <h1>Tecno Frío</h1>
+                <p style="font-size: 15px; color: #334155; font-weight: 500; margin-bottom: 4px;">Servicio Técnico en Refrigeración</p>
+                <p style="font-size: 13.5px; color: #64748B; display: flex; align-items: center; justify-content: center; gap: 4px; margin-bottom: 20px;">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="#2563EB" style="vertical-align: -2px; margin-right: 4px;">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/>
                     </svg>
+                    Federal, Entre Ríos
+                </p>
+
+                <div class="tags">
+                    <span class="tag">❄️ Aire Acondicionado</span>
+                    <span class="tag">🔧 Heladeras Comerciales y Familiares</span>
                 </div>
-                <div class="link-card-content">
-                    <div class="link-card-title">Ver trabajos realizados</div>
-                    <div class="link-card-subtitle">Galería de instalaciones y reparaciones</div>
+
+                <div class="links-container">
+                    <a href="https://wa.me/5493454480828" class="link-card whatsapp" target="_blank">
+                        <div class="icon-container">
+                            <img src="https://play-lh.googleusercontent.com/Gqxk4T0uZsDwFp07DE-508hkyvcNmgFuRwPiwTEfF7D7OzGv1FdHDzEyMxNsSBZLOJlGpe3ULvVM2RgrRAlBqA=w240-h480-rw" alt="WhatsApp" style="border-radius: 8px;">
+                        </div>
+                        <div class="link-card-content">
+                            <div class="link-card-title">Chatear por WhatsApp</div>
+                            <div class="link-card-subtitle">Presupuestos y consultas inmediatas</div>
+                        </div>
+                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+
+                    <a href="https://www.instagram.com/tecnofriofederal" class="link-card instagram" target="_blank">
+                        <div class="icon-container">
+                            <img src="source/Instagram_icon.png" alt="Instagram">
+                        </div>
+                        <div class="link-card-content">
+                            <div class="link-card-title">Seguinos en Instagram</div>
+                            <div class="link-card-subtitle">Novedades y trabajos</div>
+                        </div>
+                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+
+                    <a href="https://g.page/r/CasemWSsoOOBEBM/review" class="link-card google" target="_blank">
+                        <div class="icon-container">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Google_Maps_icon_%282020%29.svg" alt="Google Maps">
+                        </div>
+                        <div class="link-card-content">
+                            <div class="link-card-title">Dejanos tu reseña en Google</div>
+                            <div class="link-card-subtitle">Tu opinión nos ayuda a crecer</div>
+                        </div>
+                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+
+                    <a href="trabajos.html" class="link-card trabajos">
+                        <div class="icon-container">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23 19C23 19.5304 22.7893 20.0391 22.4142 20.4142C22.0391 20.7893 21.5304 21 21 21H3C2.46957 21 1.96086 20.7893 1.58579 20.4142C1.21071 20.0391 1 19.5304 1 19V8C1 7.46957 1.21071 6.96086 1.58579 6.58579C1.96086 6.21071 2.46957 6 3 6H7L9 3H15L17 6H21C21.5304 6 22.0391 6.21071 22.4142 6.58579C22.7893 6.96086 23 7.46957 23 8V19Z" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="12" cy="13" r="4" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="link-card-content">
+                            <div class="link-card-title">Ver trabajos realizados</div>
+                            <div class="link-card-subtitle">Galería de instalaciones y reparaciones</div>
+                        </div>
+                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
                 </div>
-                <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </a>
+            </div>
         </div>
 
-        <div style="margin-top: 28px; width: 100%; max-width: 480px; margin-left: auto; margin-right: auto;">
+        <div class="right-column">
             <div class="elfsight-app-370d3330-44a8-43d9-b7f5-cbba6921579c" data-elfsight-app-lazy></div>
         </div>
+    </div>
 
+    <div class="footer-container">
         <p class="footer">🕒 Horario: Lun a Sáb de 8:00 a 20:00 hs</p>
     </div>
 
