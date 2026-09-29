@@ -13,14 +13,15 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #0072BB 0%, #4FC3F7 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(180deg, #F1F5F9 0%, #FFFFFF 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            padding-bottom: 30px;
         }
 
         .container {
@@ -30,130 +31,216 @@
         }
 
         .logo-container {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .logo {
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid white;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
         }
 
         h1 {
-            color: white;
-            font-size: 24px;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            line-height: 1.4;
+            color: #0F172A;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
         }
 
-        h2 {
-            color: white;
-            font-size: 20px;
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .social-icons {
+        .tags {
             display: flex;
+            flex-direction: row;
             justify-content: center;
-            gap: 30px;
-            margin-bottom: 40px;
+            gap: 8px;
+            margin-bottom: 30px;
         }
 
-        .social-icon {
+        .tag {
+            background: #EBF4FF;
+            border: 1px solid #DBEAFE;
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: #1D4ED8;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .links-container {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: white;
-            transition: transform 0.3s ease;
+            gap: 15px;
         }
 
-        .social-icon:hover {
-            transform: scale(1.1);
-        }
-
-        .social-icon img {
-            width: 70px;
-            height: 70px;
-            margin-bottom: 10px;
-        }
-
-        .instagram-icon {
-            width: 60px;
-            height: 60px;
-        }
-
-        .whatsapp-icon {
-            border-radius: 10px;
-            width: 60px;
-            height: 60px;
-        }
-
-        .social-icon span {
-            font-size: 14px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        .google-review {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            text-decoration: none;
+        .link-card {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            transition: transform 0.3s ease;
+            padding: 14px 22px;
+            border-radius: 14px;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
 
-        .google-review:hover {
-            transform: scale(1.05);
+        .link-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
         }
 
-        .google-review img {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 10px;
+        .link-card:active {
+            transform: scale(0.98);
         }
 
-        .google-review span {
-            color: #0072BB;
-            font-weight: bold;
+        .link-card.whatsapp {
+            background: #25D366;
+        }
+
+        .link-card.instagram {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+        }
+
+        .link-card.google {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+        }
+
+        .link-card.instagram:hover,
+        .link-card.google:hover {
+            border-color: #CBD5E1;
+        }
+
+        .link-card img {
+            width: 45px;
+            height: 45px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .link-card.whatsapp img {
+            border-radius: 8px;
+        }
+
+        .link-card.google img {
+            margin-right: 15px;
+            flex-shrink: 0;
+            vertical-align: middle;
+        }
+
+        .icon-container {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-right: 14px;
+        }
+
+        .icon-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            margin: 0;
+        }
+
+        .arrow-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            opacity: 0.6;
+        }
+
+        .link-card.whatsapp .arrow-icon {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .link-card.instagram .arrow-icon,
+        .link-card.google .arrow-icon {
+            color: #94A3B8;
+        }
+
+        .link-card-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .link-card-title {
             font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .link-card.whatsapp .link-card-title,
+        .link-card.whatsapp .link-card-subtitle {
+            color: white;
+        }
+
+        .link-card.instagram .link-card-title,
+        .link-card.google .link-card-title {
+            color: #0F172A;
+        }
+
+        .link-card-subtitle {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .link-card.instagram .link-card-subtitle,
+        .link-card.google .link-card-subtitle {
+            color: #64748B;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 13px;
+            color: #64748B;
         }
 
         @media (max-width: 480px) {
-            h1 {
-                font-size: 20px;
-            }
-
-            h2 {
-                font-size: 18px;
-            }
-
             .logo {
-                width: 120px;
-                height: 120px;
+                width: 100px;
+                height: 100px;
             }
 
-            .social-icon img {
-                width: 55px;
-                height: 55px;
+            h1 {
+                font-size: 24px;
             }
 
-            .instagram-icon {
-                width: 50px;
-                height: 50px;
+            .tag {
+                font-size: 12px;
+                padding: 6px 12px;
             }
 
-            .whatsapp-icon {
-                width: 50px;
-                height: 50px;
+            .link-card {
+                padding: 12px 18px;
+            }
+
+            .icon-container {
+                width: 36px;
+                height: 36px;
+                margin-right: 12px;
+            }
+
+            .arrow-icon {
+                width: 18px;
+                height: 18px;
+            }
+
+            .link-card-title {
+                font-size: 15px;
+            }
+
+            .link-card-subtitle {
+                font-size: 12px;
+            }
+
+            .footer {
+                font-size: 12px;
             }
         }
     </style>
@@ -164,25 +251,62 @@
             <img src="source/logo.png" alt="Tecno Frío Logo" class="logo">
         </div>
 
-        <h1>Tecno Frío | Servicio técnico en refrigeración.</h1>
+        <h1>Tecno Frío</h1>
+        <p style="font-size: 15px; color: #334155; font-weight: 500; margin-bottom: 4px;">Servicio Técnico en Refrigeración</p>
+        <p style="font-size: 13.5px; color: #64748B; display: flex; align-items: center; justify-content: center; gap: 4px; margin-bottom: 20px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#2563EB" style="vertical-align: -2px; margin-right: 4px;">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/>
+            </svg>
+            Federal, Entre Ríos
+        </p>
 
-        <h2>Redes Sociales</h2>
+        <div class="tags">
+            <span class="tag">❄️ Aire Acondicionado</span>
+            <span class="tag">🔧 Heladeras Comerciales y Familiares</span>
+        </div>
 
-        <div class="social-icons">
-            <a href="https://wa.me/5493454480828" class="social-icon" target="_blank">
-                <img src="https://play-lh.googleusercontent.com/Gqxk4T0uZsDwFp07DE-508hkyvcNmgFuRwPiwTEfF7D7OzGv1FdHDzEyMxNsSBZLOJlGpe3ULvVM2RgrRAlBqA=w240-h480-rw" alt="WhatsApp" class="whatsapp-icon">
-                <span>WhatsApp</span>
+        <div class="links-container">
+            <a href="https://wa.me/5493454480828" class="link-card whatsapp" target="_blank">
+                <div class="icon-container">
+                    <img src="https://play-lh.googleusercontent.com/Gqxk4T0uZsDwFp07DE-508hkyvcNmgFuRwPiwTEfF7D7OzGv1FdHDzEyMxNsSBZLOJlGpe3ULvVM2RgrRAlBqA=w240-h480-rw" alt="WhatsApp" style="border-radius: 8px;">
+                </div>
+                <div class="link-card-content">
+                    <div class="link-card-title">Chatear por WhatsApp</div>
+                    <div class="link-card-subtitle">Presupuestos y consultas inmediatas</div>
+                </div>
+                <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </a>
-            <a href="https://www.instagram.com/tecnofriofederal" class="social-icon" target="_blank">
-                <img src="source/Instagram_icon.png" alt="Instagram" class="instagram-icon">
-                <span>Instagram</span>
+
+            <a href="https://www.instagram.com/tecnofriofederal" class="link-card instagram" target="_blank">
+                <div class="icon-container">
+                    <img src="source/Instagram_icon.png" alt="Instagram">
+                </div>
+                <div class="link-card-content">
+                    <div class="link-card-title">Seguinos en Instagram</div>
+                    <div class="link-card-subtitle">Novedades y trabajos</div>
+                </div>
+                <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+
+            <a href="https://g.page/r/CasemWSsoOOBEBM/review" class="link-card google" target="_blank">
+                <div class="icon-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Google_Maps_icon_%282020%29.svg" alt="Google Maps">
+                </div>
+                <div class="link-card-content">
+                    <div class="link-card-title">Dejanos tu reseña en Google</div>
+                    <div class="link-card-subtitle">Tu opinión nos ayuda a crecer</div>
+                </div>
+                <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </a>
         </div>
 
-        <a href="https://g.page/r/CasemWSsoOOBEBM/review" class="google-review" target="_blank">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNaDHc8jKtJip5UIxjJdxU_n_iOfDRrzkhyL-nq6qIhg&s=10" alt="Google Maps">
-            <span>Deja una reseña en Google Maps</span>
-        </a>
+        <p class="footer">🕒 Horario: Lun a Sáb de 8:00 a 20:00 hs</p>
     </div>
 </body>
 </html>
