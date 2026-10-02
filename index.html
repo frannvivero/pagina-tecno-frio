@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tecno Frío | Servicio técnico en refrigeración</title>
     <link rel="icon" type="image/png" href="source/logo.png">
+    <meta name="theme-color" content="#3f48cc">
     <style>
         * {
             margin: 0;
@@ -76,9 +77,10 @@
 
         .tags {
             display: flex;
-            flex-direction: row;
+            flex-wrap: wrap;
             justify-content: center;
-            gap: 12px;
+            gap: 8px;
+            padding: 0 16px;
             margin-bottom: 0;
         }
 
@@ -266,6 +268,18 @@
         }
 
         @media (max-width: 899px) {
+            .logo-container {
+                margin-bottom: 18px;
+            }
+
+            h1 {
+                margin-bottom: 6px;
+            }
+
+            .header {
+                padding: 28px 16px 18px 16px;
+            }
+
             .right-column {
                 margin-top: 28px;
             }
@@ -282,7 +296,7 @@
             }
 
             .tag {
-                font-size: 12px;
+                font-size: 0.8rem;
                 padding: 6px 12px;
             }
 
