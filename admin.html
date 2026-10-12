@@ -816,27 +816,37 @@
         // Cargar configuración
         async function loadConfig() {
             try {
-                const { data, error } = await supabaseClient
+                // Buscar configuración de guardia
+                const { data: guardiaData, error: guardiaError } = await supabaseClient
                     .from('configuracion')
                     .select('*')
-                    .limit(1);
+                    .eq('clave', 'guardia')
+                    .single();
 
-                if (error) throw error;
+                // Buscar configuración de banner
+                const { data: bannerData, error: bannerError } = await supabaseClient
+                    .from('configuracion')
+                    .select('*')
+                    .eq('clave', 'banner_aviso')
+                    .single();
 
-                if (data && data.length > 0) {
-                    const config = data[0];
-                    document.getElementById('guardiaToggle').checked = config.guardia || false;
-                    document.getElementById('bannerToggle').checked = config.banner_aviso || false;
-                    document.getElementById('bannerText').value = config.banner_texto || '';
-                } else {
-                    // Si no hay configuración, crear una por defecto
-                    await supabaseClient
-                        .from('configuracion')
-                        .insert([{
-                            guardia: false,
-                            banner_aviso: false,
-                            banner_texto: ''
-                        }]);
+                if (guardiaError && guardiaError.code !== 'PGRST116') {
+                    console.error('Error al cargar guardia:', guardiaError);
+                }
+
+                if (bannerError && bannerError.code !== 'PGRST116') {
+                    console.error('Error al cargar banner:', bannerError);
+                }
+
+                // Setear valores de guardia
+                if (guardiaData) {
+                    document.getElementById('guardiaToggle').checked = guardiaData.activo || false;
+                }
+
+                // Setear valores de banner
+                if (bannerData) {
+                    document.getElementById('bannerToggle').checked = bannerData.activo || false;
+                    document.getElementById('bannerText').value = bannerData.valor || '';
                 }
             } catch (error) {
                 console.error('Error al cargar configuración:', error);
@@ -846,38 +856,25 @@
         // Guardar configuración
         async function saveConfig() {
             try {
-                const guardia = document.getElementById('guardiaToggle').checked;
-                const bannerAviso = document.getElementById('bannerToggle').checked;
-                const bannerTexto = document.getElementById('bannerText').value;
+                const guardiaActivo = document.getElementById('guardiaToggle').checked;
+                const bannerActivo = document.getElementById('bannerToggle').checked;
+                const textoAviso = document.getElementById('bannerText').value;
 
-                const updates = {
-                    guardia: guardia,
-                    banner_aviso: bannerAviso,
-                    banner_texto: bannerTexto
-                };
-
-                // Verificar si ya existe configuración
-                const { data: existingConfig } = await supabaseClient
+                // Actualizar guardia
+                const { error: guardiaError } = await supabaseClient
                     .from('configuracion')
-                    .select('*')
-                    .limit(1);
+                    .update({ activo: guardiaActivo })
+                    .eq('clave', 'guardia');
 
-                if (existingConfig && existingConfig.length > 0) {
-                    // Actualizar configuración existente
-                    const { error } = await supabaseClient
-                        .from('configuracion')
-                        .update(updates)
-                        .eq('id', existingConfig[0].id);
+                if (guardiaError) throw guardiaError;
 
-                    if (error) throw error;
-                } else {
-                    // Crear nueva configuración
-                    const { error } = await supabaseClient
-                        .from('configuracion')
-                        .insert([updates]);
+                // Actualizar banner
+                const { error: bannerError } = await supabaseClient
+                    .from('configuracion')
+                    .update({ activo: bannerActivo, valor: textoAviso })
+                    .eq('clave', 'banner_aviso');
 
-                    if (error) throw error;
-                }
+                if (bannerError) throw bannerError;
 
                 alert('✓ Configuración guardada correctamente');
             } catch (error) {

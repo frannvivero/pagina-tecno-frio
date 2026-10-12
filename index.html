@@ -634,35 +634,43 @@
                     const SUPABASE_KEY = 'sb_publishable_ApxmknN4MSf9XczzG5Asjw_cuKZwpyK';
                     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-                    const { data, error } = await supabase
+                    // Buscar configuración de guardia
+                    const { data: guardiaData, error: guardiaError } = await supabase
                         .from('configuracion')
                         .select('*')
-                        .limit(1);
+                        .eq('clave', 'guardia')
+                        .single();
 
-                    if (error) {
-                        console.error('Error loading config:', error);
-                        return;
+                    // Buscar configuración de banner
+                    const { data: bannerData, error: bannerError } = await supabase
+                        .from('configuracion')
+                        .select('*')
+                        .eq('clave', 'banner_aviso')
+                        .single();
+
+                    if (guardiaError && guardiaError.code !== 'PGRST116') {
+                        console.error('Error loading guardia config:', guardiaError);
                     }
 
-                    if (data && data.length > 0) {
-                        const config = data[0];
+                    if (bannerError && bannerError.code !== 'PGRST116') {
+                        console.error('Error loading banner config:', bannerError);
+                    }
 
-                        // Show/hide guardia badge
-                        const guardiaBadge = document.getElementById('guardiaBadge');
-                        if (config.guardia) {
-                            guardiaBadge.style.display = 'inline';
-                        } else {
-                            guardiaBadge.style.display = 'none';
-                        }
+                    // Show/hide guardia badge
+                    const guardiaBadge = document.getElementById('guardiaBadge');
+                    if (guardiaData && guardiaData.activo) {
+                        guardiaBadge.style.display = 'inline';
+                    } else {
+                        guardiaBadge.style.display = 'none';
+                    }
 
-                        // Show/hide banner aviso
-                        const bannerAviso = document.getElementById('bannerAviso');
-                        if (config.banner_aviso && config.banner_texto) {
-                            bannerAviso.textContent = config.banner_texto;
-                            bannerAviso.classList.add('active');
-                        } else {
-                            bannerAviso.classList.remove('active');
-                        }
+                    // Show/hide banner aviso
+                    const bannerAviso = document.getElementById('bannerAviso');
+                    if (bannerData && bannerData.activo && bannerData.valor) {
+                        bannerAviso.textContent = bannerData.valor;
+                        bannerAviso.classList.add('active');
+                    } else {
+                        bannerAviso.classList.remove('active');
                     }
                 };
                 document.head.appendChild(script);
