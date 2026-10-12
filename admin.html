@@ -534,8 +534,11 @@
                                 <span class="toggle-slider"></span>
                             </label>
                         </div>
-                        <textarea class="config-textarea" id="bannerText" placeholder="Escribí el mensaje del aviso..." onblur="updateConfig('banner_texto')"></textarea>
+                        <textarea class="config-textarea" id="bannerText" placeholder="Escribí el mensaje del aviso..."></textarea>
                     </div>
+                    <button class="btn btn-primary" onclick="saveConfig()" style="margin-top: 16px;">
+                        Guardar configuración
+                    </button>
                 </div>
             </div>
         </div>
@@ -815,7 +818,8 @@
             try {
                 const { data, error } = await supabaseClient
                     .from('configuracion')
-                    .select('*');
+                    .select('*')
+                    .limit(1);
 
                 if (error) throw error;
 
@@ -824,14 +828,23 @@
                     document.getElementById('guardiaToggle').checked = config.guardia || false;
                     document.getElementById('bannerToggle').checked = config.banner_aviso || false;
                     document.getElementById('bannerText').value = config.banner_texto || '';
+                } else {
+                    // Si no hay configuración, crear una por defecto
+                    await supabaseClient
+                        .from('configuracion')
+                        .insert([{
+                            guardia: false,
+                            banner_aviso: false,
+                            banner_texto: ''
+                        }]);
                 }
             } catch (error) {
                 console.error('Error al cargar configuración:', error);
             }
         }
 
-        // Actualizar configuración
-        async function updateConfig(key) {
+        // Guardar configuración
+        async function saveConfig() {
             try {
                 const guardia = document.getElementById('guardiaToggle').checked;
                 const bannerAviso = document.getElementById('bannerToggle').checked;
@@ -866,9 +879,10 @@
                     if (error) throw error;
                 }
 
-                console.log('Configuración actualizada');
+                alert('✓ Configuración guardada correctamente');
             } catch (error) {
-                console.error('Error al actualizar configuración:', error);
+                console.error('Error al guardar configuración:', error);
+                alert('Error al guardar configuración: ' + error.message);
             }
         }
 
