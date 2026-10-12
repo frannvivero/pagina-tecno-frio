@@ -352,6 +352,44 @@
             }
         }
 
+        .guardia-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #10B981;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            animation: pulse 2s ease-in-out infinite;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .banner-aviso {
+            display: none;
+            background: linear-gradient(90deg, #3f48cc 0%, #5b65e8 100%);
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .banner-aviso.active {
+            display: block;
+        }
+
         .whatsapp-mascot-widget {
             position: fixed;
             bottom: 24px;
@@ -433,6 +471,8 @@
     </style>
 </head>
 <body>
+    <div class="banner-aviso" id="bannerAviso"></div>
+
     <div class="header">
         <div class="header-content">
             <div class="logo-container">
@@ -447,6 +487,7 @@
                 <span id="weather-temp">Cargando clima...</span>
                 <span>•</span>
                 <span id="live-clock">--:-- hs</span>
+                <span id="guardiaBadge" style="display: none;">• <a href="https://wa.me/5493454480828" class="guardia-badge">🟢 Atendiendo urgencias ahora</a></span>
             </p>
 
             <div class="tags">
@@ -582,6 +623,55 @@
         updateClock();
         setInterval(updateClock, 1000);
         updateWeather();
+
+        // Load configuration from Supabase
+        async function loadConfig() {
+            try {
+                const script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+                script.onload = async () => {
+                    const SUPABASE_URL = 'https://oseyfgdhdfsbqmfyjnwr.supabase.co';
+                    const SUPABASE_KEY = 'sb_publishable_ApxmknN4MSf9XczzG5Asjw_cuKZwpyK';
+                    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+                    const { data, error } = await supabase
+                        .from('configuracion')
+                        .select('*')
+                        .limit(1);
+
+                    if (error) {
+                        console.error('Error loading config:', error);
+                        return;
+                    }
+
+                    if (data && data.length > 0) {
+                        const config = data[0];
+
+                        // Show/hide guardia badge
+                        const guardiaBadge = document.getElementById('guardiaBadge');
+                        if (config.guardia) {
+                            guardiaBadge.style.display = 'inline';
+                        } else {
+                            guardiaBadge.style.display = 'none';
+                        }
+
+                        // Show/hide banner aviso
+                        const bannerAviso = document.getElementById('bannerAviso');
+                        if (config.banner_aviso && config.banner_texto) {
+                            bannerAviso.textContent = config.banner_texto;
+                            bannerAviso.classList.add('active');
+                        } else {
+                            bannerAviso.classList.remove('active');
+                        }
+                    }
+                };
+                document.head.appendChild(script);
+            } catch (error) {
+                console.error('Error loading Supabase:', error);
+            }
+        }
+
+        loadConfig();
     </script>
 
     <div class="whatsapp-mascot-widget">
