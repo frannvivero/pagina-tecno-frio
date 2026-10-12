@@ -48,6 +48,11 @@
             background: linear-gradient(180deg, #F1F5F9 0%, #FFFFFF 100%);
             min-height: 100vh;
             padding-bottom: 30px;
+            transition: padding-top 0.3s ease;
+        }
+
+        body.with-banner {
+            padding-top: 54px;
         }
 
         .header {
@@ -378,16 +383,28 @@
 
         .banner-aviso {
             display: none;
-            background: linear-gradient(90deg, #3f48cc 0%, #5b65e8 100%);
-            color: white;
-            padding: 12px 20px;
+            background: linear-gradient(90deg, #1a1a2e 0%, #16213e 100%);
+            color: #FFD700;
+            padding: 16px 20px;
             text-align: center;
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .banner-aviso.active {
             display: block;
+        }
+
+        .banner-icon {
+            margin-right: 8px;
+            font-size: 20px;
         }
 
         .whatsapp-mascot-widget {
@@ -471,7 +488,10 @@
     </style>
 </head>
 <body>
-    <div class="banner-aviso" id="bannerAviso"></div>
+    <div class="banner-aviso" id="bannerAviso">
+        <span class="banner-icon">📢</span>
+        <span id="bannerText"></span>
+    </div>
 
     <div class="header">
         <div class="header-content">
@@ -487,7 +507,7 @@
                 <span id="weather-temp">Cargando clima...</span>
                 <span>•</span>
                 <span id="live-clock">--:-- hs</span>
-                <span id="guardiaBadge" style="display: none;">• <a href="https://wa.me/5493454480828" class="guardia-badge">🟢 Atendiendo urgencias ahora</a></span>
+                <span id="guardiaBadge" style="display: none;">• <a href="https://wa.me/5493454480828" class="guardia-badge">🟢 <span id="guardiaText">Atendiendo urgencias ahora</span></a></span>
             </p>
 
             <div class="tags">
@@ -658,19 +678,24 @@
 
                     // Show/hide guardia badge
                     const guardiaBadge = document.getElementById('guardiaBadge');
+                    const guardiaText = document.getElementById('guardiaText');
                     if (guardiaData && guardiaData.activo) {
                         guardiaBadge.style.display = 'inline';
+                        guardiaText.textContent = guardiaData.valor || 'Atendiendo urgencias ahora';
                     } else {
                         guardiaBadge.style.display = 'none';
                     }
 
                     // Show/hide banner aviso
                     const bannerAviso = document.getElementById('bannerAviso');
+                    const bannerText = document.getElementById('bannerText');
                     if (bannerData && bannerData.activo && bannerData.valor) {
-                        bannerAviso.textContent = bannerData.valor;
+                        bannerText.textContent = bannerData.valor;
                         bannerAviso.classList.add('active');
+                        document.body.classList.add('with-banner');
                     } else {
                         bannerAviso.classList.remove('active');
+                        document.body.classList.remove('with-banner');
                     }
                 };
                 document.head.appendChild(script);

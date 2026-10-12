@@ -516,30 +516,46 @@
             <!-- Config Section -->
             <div class="config-section">
                 <h2>Configuración del sitio</h2>
-                <div class="config-card">
+
+                <!-- Bloque A: Estado de Guardia -->
+                <div class="config-card" style="margin-bottom: 20px;">
+                    <h3 style="color: #0F172A; font-size: 16px; font-weight: 700; margin-bottom: 16px;">Estado de Guardia / Urgencias</h3>
                     <div class="config-item">
                         <div class="config-label">
-                            <span>Estado de guardia / Urgencias activas</span>
+                            <span>Activar estado de guardia</span>
                             <label class="toggle-switch">
-                                <input type="checkbox" id="guardiaToggle" onchange="updateConfig('guardia')">
+                                <input type="checkbox" id="guardiaToggle">
                                 <span class="toggle-slider"></span>
                             </label>
                         </div>
                     </div>
-                    <div class="config-item">
-                        <div class="config-label">
-                            <span>Mostrar aviso superior / promoción</span>
-                            <label class="toggle-switch">
-                                <input type="checkbox" id="bannerToggle" onchange="updateConfig('banner_aviso')">
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
-                        <textarea class="config-textarea" id="bannerText" placeholder="Escribí el mensaje del aviso..."></textarea>
+                    <div class="form-group">
+                        <label for="guardiaText">Texto del estado</label>
+                        <input type="text" id="guardiaText" placeholder="Ej: Atendiendo urgencias ahora" />
                     </div>
-                    <button class="btn btn-primary" onclick="saveConfig()" style="margin-top: 16px;">
-                        Guardar configuración
-                    </button>
                 </div>
+
+                <!-- Bloque B: Banner Superior -->
+                <div class="config-card">
+                    <h3 style="color: #0F172A; font-size: 16px; font-weight: 700; margin-bottom: 16px;">Banner Superior / Aviso Promocional</h3>
+                    <div class="config-item">
+                        <div class="config-label">
+                            <span>Mostrar aviso superior</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="bannerToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="bannerText">Mensaje del aviso</label>
+                        <textarea class="config-textarea" id="bannerText" placeholder="Ej: ¡Promoción de temporada en cargas de gas!"></textarea>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="saveConfig()" style="margin-top: 20px;">
+                    Guardar configuración
+                </button>
             </div>
         </div>
     </div>
@@ -841,6 +857,7 @@
                 // Setear valores de guardia
                 if (guardiaData) {
                     document.getElementById('guardiaToggle').checked = guardiaData.activo || false;
+                    document.getElementById('guardiaText').value = guardiaData.valor || '';
                 }
 
                 // Setear valores de banner
@@ -857,13 +874,14 @@
         async function saveConfig() {
             try {
                 const guardiaActivo = document.getElementById('guardiaToggle').checked;
+                const guardiaTexto = document.getElementById('guardiaText').value;
                 const bannerActivo = document.getElementById('bannerToggle').checked;
-                const textoAviso = document.getElementById('bannerText').value;
+                const bannerTexto = document.getElementById('bannerText').value;
 
                 // Actualizar guardia
                 const { error: guardiaError } = await supabaseClient
                     .from('configuracion')
-                    .update({ activo: guardiaActivo })
+                    .update({ activo: guardiaActivo, valor: guardiaTexto })
                     .eq('clave', 'guardia');
 
                 if (guardiaError) throw guardiaError;
@@ -871,7 +889,7 @@
                 // Actualizar banner
                 const { error: bannerError } = await supabaseClient
                     .from('configuracion')
-                    .update({ activo: bannerActivo, valor: textoAviso })
+                    .update({ activo: bannerActivo, valor: bannerTexto })
                     .eq('clave', 'banner_aviso');
 
                 if (bannerError) throw bannerError;
