@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trabajos Realizados | Tecno Frío</title>
     <link rel="icon" type="image/png" href="source/logo.png">
+
+    <!-- Open Graph / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tecno-frio.vercel.app/trabajos.html" />
+    <meta property="og:title" content="Trabajos Realizados | Tecno Frío" />
+    <meta property="og:description" content="Galería de instalaciones, reparaciones y mantenimiento de refrigeración en Federal, Entre Ríos." />
+    <meta property="og:image" content="https://tecno-frio.vercel.app/source/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Trabajos Realizados | Tecno Frío" />
+    <meta name="twitter:description" content="Galería de instalaciones, reparaciones y mantenimiento de refrigeración en Federal, Entre Ríos." />
+    <meta name="twitter:image" content="https://tecno-frio.vercel.app/source/og-image.jpg" />
     <style>
         * {
             margin: 0;
@@ -138,6 +153,10 @@
             background: #E2E8F0;
         }
 
+        #dynamicGallery {
+            margin-bottom: 20px;
+        }
+
         .whatsapp-mascot-widget {
             position: fixed;
             bottom: 24px;
@@ -258,6 +277,8 @@
             <h1>Trabajos Realizados</h1>
             <p class="subtitle">Instalaciones, reparaciones y mantenimiento de refrigeración</p>
         </div>
+
+        <div class="gallery" id="dynamicGallery"></div>
 
         <div class="gallery">
             <div class="gallery-item" onclick="openModal('source/trabajos/trabajo (1).jpg')">
@@ -483,6 +504,49 @@
                 closeModal();
             }
         });
+
+        // Supabase Integration
+        const SUPABASE_URL = 'https://oseyfgdhdfsbqmfyjnwr.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_ApxmknN4MSf9XczzG5Asjw_cuKZwpyK';
+
+        async function loadDynamicWorks() {
+            try {
+                const script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+                script.onload = async () => {
+                    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+                    const { data, error } = await supabase
+                        .from('trabajos')
+                        .select('*')
+                        .order('created_at', { ascending: false });
+
+                    if (error) {
+                        console.error('Error fetching works:', error);
+                        return;
+                    }
+
+                    const dynamicGallery = document.getElementById('dynamicGallery');
+                    dynamicGallery.innerHTML = '';
+
+                    data.forEach(work => {
+                        const item = document.createElement('div');
+                        item.className = 'gallery-item';
+                        item.onclick = () => openModal(work.imagen_url);
+                        item.innerHTML = `
+                            <img src="${work.imagen_url}" alt="${work.titulo}" loading="lazy">
+                        `;
+                        dynamicGallery.appendChild(item);
+                    });
+                };
+                document.head.appendChild(script);
+            } catch (error) {
+                console.error('Error loading Supabase:', error);
+            }
+        }
+
+        // Load dynamic works on page load
+        loadDynamicWorks();
     </script>
 </body>
 </html>
