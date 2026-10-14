@@ -521,6 +521,311 @@
             transform: translateY(-2px);
         }
 
+        .calculator-section {
+            max-width: 980px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .calculator-card {
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 32px 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .calculator-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .calculator-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .calculator-field.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .calculator-field label {
+            color: #0F172A;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .calculator-field input,
+        .calculator-field select {
+            padding: 12px 16px;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: border-color 0.2s ease;
+        }
+
+        .calculator-field input:focus,
+        .calculator-field select:focus {
+            outline: none;
+            border-color: #3f48cc;
+        }
+
+        .calculator-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .calculator-checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .calculator-checkbox label {
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .calculator-result {
+            grid-column: 1 / -1;
+            background: #F8FAFC;
+            border: 2px solid #3f48cc;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .calculator-result h3 {
+            color: #3f48cc;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .calculator-result p {
+            color: #0F172A;
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+
+        .calculator-btn {
+            background: #25D366;
+            color: white;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .calculator-btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+
+        .faq-section {
+            max-width: 980px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .faq-item summary {
+            padding: 20px 24px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0F172A;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            list-style: none;
+            transition: background 0.2s ease;
+        }
+
+        .faq-item summary:hover {
+            background: #F8FAFC;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: '+';
+            font-size: 24px;
+            font-weight: bold;
+            color: #3f48cc;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item details[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-content {
+            padding: 0 24px 24px 24px;
+            color: #64748B;
+            font-size: 14px;
+            line-height: 1.6;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            background: #ffffff;
+            border: 2px solid #3f48cc;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .dark-mode-toggle svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        body.dark-mode {
+            --bg-primary: #0F172A;
+            --bg-secondary: #1E293B;
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --border-color: #334155;
+        }
+
+        body.dark-mode .header {
+            background: #1E293B;
+        }
+
+        body.dark-mode .header-content h1 {
+            color: #F1F5F9;
+        }
+
+        body.dark-mode .header-content p {
+            color: #94A3B8;
+        }
+
+        body.dark-mode .location-weather {
+            color: #94A3B8;
+        }
+
+        body.dark-mode .tag {
+            background: #334155;
+            color: #F1F5F9;
+        }
+
+        body.dark-mode .link-card {
+            background: #1E293B;
+            border-color: #334155;
+        }
+
+        body.dark-mode .link-card-title {
+            color: #F1F5F9;
+        }
+
+        body.dark-mode .link-card-subtitle {
+            color: #94A3B8;
+        }
+
+        body.dark-mode .right-column {
+            background: #1E293B;
+            border-color: #334155;
+        }
+
+        body.dark-mode .section-title {
+            color: #F1F5F9;
+        }
+
+        body.dark-mode .price-card,
+        body.dark-mode .coverage-card,
+        body.dark-mode .brand-item,
+        body.dark-mode .payment-card,
+        body.dark-mode .calculator-card,
+        body.dark-mode .faq-item {
+            background: #1E293B;
+            border-color: #334155;
+        }
+
+        body.dark-mode .price-service,
+        body.dark-mode .price-value,
+        body.dark-mode .coverage-main,
+        body.dark-mode .calculator-result h3,
+        body.dark-mode .faq-item summary {
+            color: #F1F5F9;
+        }
+
+        body.dark-mode .price-disclaimer,
+        body.dark-mode .coverage-subtitle,
+        body.dark-mode .coverage-note,
+        body.dark-mode .payment-discount,
+        body.dark-mode .calculator-result p,
+        body.dark-mode .faq-content {
+            color: #94A3B8;
+        }
+
+        body.dark-mode .coverage-area {
+            background: #334155;
+            color: #F1F5F9;
+        }
+
+        body.dark-mode .calculator-field label {
+            color: #F1F5F9;
+        }
+
+        body.dark-mode .calculator-field input,
+        body.dark-mode .calculator-field select {
+            background: #334155;
+            border-color: #475569;
+            color: #F1F5F9;
+        }
+
+        body.dark-mode .calculator-result {
+            background: #334155;
+        }
+
+        body.dark-mode .footer {
+            color: #94A3B8;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-form {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .prices-section {
             max-width: 980px;
             margin: 40px auto;
@@ -718,6 +1023,12 @@
         <span id="bannerText"></span>
     </div>
 
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()" aria-label="Cambiar modo oscuro/claro">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3a1 1 0 0 0 0 2c5.523 0 10 4.477 10 10a1 1 0 0 0 2 0C24 6.477 18.523 1 12 3zM12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 2a9 9 0 1 0 0 18 9 9 0 0 0 0-18z" fill="#3f48cc"/>
+        </svg>
+    </button>
+
     <div class="header">
         <div class="header-content">
             <div class="logo-container">
@@ -805,7 +1116,6 @@
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M22 16.92v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M15 7a2 2 0 0 1 2 2h4a2 2 0 0 1 2-2h1a2 2 0 0 1 2-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M7 7l10 5-10 5V7z" fill="currentColor" stroke="none"/>
                         </svg>
                     </div>
                     <div class="link-card-content">
@@ -820,7 +1130,6 @@
         </div>
 
         <div class="right-column">
-            <div class="elfsight-app-370d3330-44a8-43d9-b7f5-cbba6921579c" data-elfsight-app-lazy></div>
         </div>
     </div>
 
@@ -833,6 +1142,55 @@
             </div>
         </div>
         <p class="prices-disclaimer">* Valores sujetos a revisión del equipo o materiales adicionales</p>
+    </div>
+
+    <!-- Calculadora de Frigorías -->
+    <div class="calculator-section">
+        <h2 class="section-title">Calculadora de Frigorías</h2>
+        <div class="calculator-card">
+            <div class="calculator-form">
+                <div class="calculator-field">
+                    <label for="roomLength">Largo del ambiente (m)</label>
+                    <input type="number" id="roomLength" placeholder="Ej: 4" min="1" step="0.5" />
+                </div>
+                <div class="calculator-field">
+                    <label for="roomWidth">Ancho del ambiente (m)</label>
+                    <input type="number" id="roomWidth" placeholder="Ej: 3" min="1" step="0.5" />
+                </div>
+                <div class="calculator-field full-width">
+                    <label>Condiciones térmicas adicionales:</label>
+                    <div class="calculator-checkbox">
+                        <input type="checkbox" id="roofSun" />
+                        <label for="roofSun">Techo de chapa o sol directo de la tarde</label>
+                    </div>
+                    <div class="calculator-checkbox">
+                        <input type="checkbox" id="largeWindow" />
+                        <label for="largeWindow">Paredes vidriadas o ventanal grande</label>
+                    </div>
+                </div>
+                <div class="calculator-field">
+                    <label for="peopleCount">Cantidad de personas</label>
+                    <input type="number" id="peopleCount" placeholder="Ej: 2" min="1" value="2" />
+                </div>
+                <div class="calculator-field">
+                    <label for="appliancesCount">Electrodomésticos en uso</label>
+                    <input type="number" id="appliancesCount" placeholder="Ej: 1" min="0" value="0" />
+                </div>
+                <div class="calculator-result full-width" id="calculatorResult" style="display: none;">
+                    <h3 id="resultTitle">Resultado</h3>
+                    <p id="resultText"></p>
+                    <a id="whatsappBtn" class="calculator-btn" href="#" target="_blank">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+                        </svg>
+                        Consultar instalación para este equipo
+                    </a>
+                </div>
+            </div>
+            <button class="calculator-btn" onclick="calculateBTUs()" style="margin-top: 20px; width: 100%; justify-content: center; background: #3f48cc;">
+                Calcular frigorías
+            </button>
+        </div>
     </div>
 
     <!-- Zona de Cobertura -->
@@ -865,6 +1223,14 @@
         </div>
     </div>
 
+    <!-- Lo que dicen nuestros clientes -->
+    <div class="payment-section">
+        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+        <div class="right-column" style="background: #ffffff; border: 1px solid #E2E8F0; border-radius: 16px; padding: 24px; min-height: 300px;">
+            <div class="elfsight-app-370d3330-44a8-43d9-b7f5-cbba6921579c" data-elfsight-app-lazy></div>
+        </div>
+    </div>
+
     <!-- Medios de Pago -->
     <div class="payment-section">
         <h2 class="section-title">Medios de Pago</h2>
@@ -889,6 +1255,56 @@
                 <div class="payment-name">Tarjetas</div>
                 <div class="payment-discount">Débito y Crédito</div>
             </div>
+        </div>
+    </div>
+
+    <!-- Preguntas Frecuentes (FAQ) -->
+    <div class="faq-section">
+        <h2 class="section-title">Preguntas Frecuentes</h2>
+
+        <div class="faq-item">
+            <details>
+                <summary>¿Qué incluye una instalación estándar?</summary>
+                <div class="faq-content">
+                    Colocación de unidad interior y exterior sobre ménsulas reforzadas, cañería de cobre reglamentaria de hasta 3 metros con aislación individual, orificio y sellado pasamuros, presurización con nitrógeno y vacío obligatorio con bomba de doble etapa.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>¿Por qué es obligatorio hacer vacío con bomba y no con barrido de gas?</summary>
+                <div class="faq-content">
+                    El barrido no quita la humedad ni el aire del circuito. Esa humedad degrada el aceite sintético, acidifica el circuito y quema el compresor en poco tiempo, perdiendo la garantía de fábrica.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>¿Otorgan garantía por escrito sobre los trabajos?</summary>
+                <div class="faq-content">
+                    Sí, todas las instalaciones y reparaciones cuentan con garantía de servicio tanto en mano de obra como en repuestos utilizados.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>¿Los presupuestos a domicilio tienen costo?</summary>
+                <div class="faq-content">
+                    Las visitas de diagnóstico técnico en Federal y zonas de cobertura tienen un costo mínimo de traslado/inspección que se bonifica si se realiza el trabajo.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>¿Qué medios de pago aceptan?</summary>
+                <div class="faq-content">
+                    Efectivo, transferencia bancaria (Alias/CBU en un toque) y pagos electrónicos o tarjetas.
+                </div>
+            </details>
         </div>
     </div>
 
@@ -1059,7 +1475,93 @@
 
         loadConfig();
         loadPrices();
+
+        // Calculadora de Frigorías
+        function calculateBTUs() {
+            const length = parseFloat(document.getElementById('roomLength').value) || 0;
+            const width = parseFloat(document.getElementById('roomWidth').value) || 0;
+            const roofSun = document.getElementById('roofSun').checked;
+            const largeWindow = document.getElementById('largeWindow').checked;
+            const people = parseInt(document.getElementById('peopleCount').value) || 2;
+            const appliances = parseInt(document.getElementById('appliancesCount').value) || 0;
+
+            if (length <= 0 || width <= 0) {
+                alert('Por favor ingresá las dimensiones del ambiente');
+                return;
+            }
+
+            const area = length * width;
+            let baseBTUs = area * 50; // 50 frigorías por m²
+
+            // Sumar por condiciones térmicas
+            if (roofSun) baseBTUs *= 1.25; // +25% por techo de chapa/sol directo
+            if (largeWindow) baseBTUs *= 1.15; // +15% por ventana grande
+
+            // Sumar por personas extra (más de 2)
+            if (people > 2) {
+                baseBTUs += (people - 2) * 150;
+            }
+
+            // Sumar por electrodomésticos
+            baseBTUs += appliances * 100;
+
+            // Calcular watts aproximados (1 frigoría ≈ 0.1163 watts para refrigeración)
+            const watts = Math.round(baseBTUs * 0.1163);
+
+            // Redondear a rangos estándar
+            const standardBTUs = Math.round(baseBTUs / 100) * 100;
+            const rangeMin = standardBTUs - 250;
+            const rangeMax = standardBTUs + 250;
+
+            // Mostrar resultado
+            const resultDiv = document.getElementById('calculatorResult');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultText = document.getElementById('resultText');
+            const whatsappBtn = document.getElementById('whatsappBtn');
+
+            resultDiv.style.display = 'block';
+            resultTitle.textContent = 'Resultado';
+            resultText.textContent = `Recomendado: ${rangeMin} a ${rangeMax} Frigorías / ~${watts} W`;
+
+            // Configurar botón de WhatsApp
+            const message = `Hola Tecno Frío, calculé en la web que necesito un equipo de ${rangeMin} a ${rangeMax} frigorías para un ambiente de ${length}x${width}m. Quisiera consultar modelos disponibles e instalación.`;
+            whatsappBtn.href = `https://wa.me/5493454480828?text=${encodeURIComponent(message)}`;
+        }
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            const body = document.body;
+            const themeIcon = document.getElementById('themeIcon');
+
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+                themeIcon.innerHTML = '<path d="M12 3a1 1 0 0 0 0 2c5.523 0 10 4.477 10 10a1 1 0 0 0 2 0C24 6.477 18.523 1 12 3zM12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 2a9 9 0 1 0 0 18 9 9 0 0 0 0-18z" fill="#3f48cc"/>';
+            } else {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="#F59E0B"/>';
+            }
+        }
+
+        // Load theme preference
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const themeIcon = document.getElementById('themeIcon');
+
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.body.classList.add('dark-mode');
+                themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="#F59E0B"/>';
+            } else {
+                themeIcon.innerHTML = '<path d="M12 3a1 1 0 0 0 0 2c5.523 0 10 4.477 10 10a1 1 0 0 0 2 0C24 6.477 18.523 1 12 3zM12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 2a9 9 0 1 0 0 18 9 9 0 0 0 0-18z" fill="#3f48cc"/>';
+            }
+        }
+
+        loadTheme();
     </script>
+
+    <script src="https://elfsightcdn.com/platform.js" defer></script>
 
     <div class="whatsapp-mascot-widget">
         <a href="https://wa.me/5493454480828?text=Hola%20Tecno%20Fr%C3%ADo,%20necesito%20hacer%20una%20consulta%20por%20un%20servicio."
