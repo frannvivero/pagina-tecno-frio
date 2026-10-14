@@ -1023,7 +1023,7 @@
                             <div class="price-admin-service">${price.servicio}</div>
                             <div class="price-admin-order">Orden: ${price.orden}</div>
                         </div>
-                        <input type="text" class="price-input" value="${price.valor}" onchange="updatePrice(${price.id}, this.value)" />
+                        <input type="text" class="price-input" value="${price.precio}" onchange="updatePrice(${price.id}, this.value)" />
                         <button class="action-btn delete-btn" onclick="deletePrice(${price.id})">Eliminar</button>
                     `;
                     pricesList.appendChild(item);
@@ -1036,9 +1036,9 @@
         // Agregar precio
         async function addPrice() {
             const servicio = document.getElementById('newPriceService').value.trim();
-            const valor = document.getElementById('newPriceValue').value.trim();
+            const precio = document.getElementById('newPriceValue').value.trim();
 
-            if (!servicio || !valor) {
+            if (!servicio || !precio) {
                 alert('Por favor completá ambos campos');
                 return;
             }
@@ -1057,7 +1057,7 @@
                     .from('precios')
                     .insert([{
                         servicio: servicio,
-                        valor: valor,
+                        precio: precio,
                         orden: newOrder
                     }]);
 
@@ -1080,7 +1080,7 @@
             try {
                 const { error } = await supabaseClient
                     .from('precios')
-                    .update({ valor: newValue })
+                    .update({ precio: newValue })
                     .eq('id', id);
 
                 if (error) throw error;
