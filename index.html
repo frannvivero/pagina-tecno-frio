@@ -446,6 +446,156 @@
             }
         }
 
+        .prices-section {
+            max-width: 980px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            color: #0F172A;
+            font-size: 24px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .prices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .price-card {
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: #CBD5E1;
+        }
+
+        .price-service {
+            color: #0F172A;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .price-value {
+            color: #3f48cc;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .prices-disclaimer {
+            text-align: center;
+            color: #64748B;
+            font-size: 12px;
+            margin-top: 16px;
+            font-style: italic;
+        }
+
+        .coverage-section {
+            max-width: 980px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .coverage-card {
+            background: linear-gradient(135deg, #3f48cc 0%, #5b65e8 100%);
+            border-radius: 16px;
+            padding: 32px 24px;
+            color: white;
+            text-align: center;
+        }
+
+        .coverage-main {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .coverage-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .coverage-areas {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .coverage-area {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .coverage-note {
+            font-size: 13px;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .payment-section {
+            max-width: 980px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .payment-card {
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .payment-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: #CBD5E1;
+        }
+
+        .payment-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .payment-name {
+            color: #0F172A;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .payment-discount {
+            color: #10B981;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
         .whatsapp-mascot-avatar {
             width: 64px;
             height: 64px;
@@ -582,6 +732,60 @@
         </div>
     </div>
 
+    <!-- Precios de Referencia -->
+    <div class="prices-section">
+        <h2 class="section-title">Precios de Referencia</h2>
+        <div class="prices-grid" id="pricesGrid">
+            <div class="price-card">
+                <div class="price-service">Cargando precios...</div>
+            </div>
+        </div>
+        <p class="prices-disclaimer">* Valores sujetos a revisión del equipo o materiales adicionales</p>
+    </div>
+
+    <!-- Zona de Cobertura -->
+    <div class="coverage-section">
+        <div class="coverage-card">
+            <div class="coverage-main">📍 Zona de Cobertura</div>
+            <div class="coverage-subtitle">Servicio técnico de refrigeración en</div>
+            <div class="coverage-areas">
+                <div class="coverage-area">🏘️ Federal</div>
+                <div class="coverage-area">🏘️ Conscripto Bernardi</div>
+                <div class="coverage-area">🏘️ Sauce de Luna</div>
+                <div class="coverage-area">🌾 Zonas Rurales</div>
+                <div class="coverage-area">🏡 Estancias Aledañas</div>
+            </div>
+            <p class="coverage-note">* Consultar por viáticos para zonas rurales y estancias</p>
+        </div>
+    </div>
+
+    <!-- Medios de Pago -->
+    <div class="payment-section">
+        <h2 class="section-title">Medios de Pago</h2>
+        <div class="payment-grid">
+            <div class="payment-card">
+                <div class="payment-icon">💵</div>
+                <div class="payment-name">Efectivo</div>
+                <div class="payment-discount">Precio especial</div>
+            </div>
+            <div class="payment-card">
+                <div class="payment-icon">🏦</div>
+                <div class="payment-name">Transferencia</div>
+                <div class="payment-discount">Alias disponible</div>
+            </div>
+            <div class="payment-card">
+                <div class="payment-icon">💳</div>
+                <div class="payment-name">Mercado Pago</div>
+                <div class="payment-discount">QR y link</div>
+            </div>
+            <div class="payment-card">
+                <div class="payment-icon">💳</div>
+                <div class="payment-name">Tarjetas</div>
+                <div class="payment-discount">Débito y Crédito</div>
+            </div>
+        </div>
+    </div>
+
     <div class="footer-container">
         <p class="footer">🕒 Horario: Lun a Sáb de 8:00 a 20:00 hs</p>
     </div>
@@ -704,7 +908,51 @@
             }
         }
 
+        // Load prices from Supabase
+        async function loadPrices() {
+            try {
+                const script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+                script.onload = async () => {
+                    const SUPABASE_URL = 'https://oseyfgdhdfsbqmfyjnwr.supabase.co';
+                    const SUPABASE_KEY = 'sb_publishable_ApxmknN4MSf9XczzG5Asjw_cuKZwpyK';
+                    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+                    const { data, error } = await supabase
+                        .from('precios')
+                        .select('*')
+                        .order('orden', { ascending: true });
+
+                    if (error) {
+                        console.error('Error loading prices:', error);
+                        return;
+                    }
+
+                    const pricesGrid = document.getElementById('pricesGrid');
+                    pricesGrid.innerHTML = '';
+
+                    if (data && data.length > 0) {
+                        data.forEach(price => {
+                            const card = document.createElement('div');
+                            card.className = 'price-card';
+                            card.innerHTML = `
+                                <div class="price-service">${price.servicio}</div>
+                                <div class="price-value">${price.valor}</div>
+                            `;
+                            pricesGrid.appendChild(card);
+                        });
+                    } else {
+                        pricesGrid.innerHTML = '<div class="price-card"><div class="price-service">No hay precios disponibles</div></div>';
+                    }
+                };
+                document.head.appendChild(script);
+            } catch (error) {
+                console.error('Error loading Supabase:', error);
+            }
+        }
+
         loadConfig();
+        loadPrices();
     </script>
 
     <div class="whatsapp-mascot-widget">

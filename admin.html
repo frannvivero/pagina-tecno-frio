@@ -455,6 +455,90 @@
             color: #64748B;
             font-size: 14px;
         }
+
+        .prices-admin-section {
+            margin-top: 32px;
+        }
+
+        .prices-admin-section h2 {
+            color: #0F172A;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .price-admin-item {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .price-admin-info {
+            flex: 1;
+        }
+
+        .price-admin-service {
+            color: #0F172A;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .price-admin-order {
+            color: #64748B;
+            font-size: 12px;
+        }
+
+        .price-admin-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .price-input {
+            width: 120px;
+            padding: 8px 12px;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .add-price-card {
+            background: #3f48cc;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 16px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .add-price-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .add-price-btn {
+            background: white;
+            color: #3f48cc;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .add-price-btn:hover {
+            background: #F1F5F9;
+        }
     </style>
 </head>
 <body>
@@ -556,6 +640,18 @@
                 <button class="btn btn-primary" onclick="saveConfig()" style="margin-top: 20px;">
                     Guardar configuración
                 </button>
+            </div>
+
+            <!-- Precios Admin Section -->
+            <div class="prices-admin-section">
+                <h2>Precios de Referencia</h2>
+                <div id="pricesAdminList"></div>
+
+                <div class="add-price-card">
+                    <input type="text" id="newPriceService" class="add-price-input" placeholder="Nombre del servicio">
+                    <input type="text" id="newPriceValue" class="add-price-input" placeholder="Precio (ej: $5.000)">
+                    <button class="add-price-btn" onclick="addPrice()">Agregar</button>
+                </div>
             </div>
         </div>
     </div>
@@ -901,6 +997,123 @@
             }
         }
 
+        // Cargar precios
+        async function loadPrices() {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('precios')
+                    .select('*')
+                    .order('orden', { ascending: true });
+
+                if (error) throw error;
+
+                const pricesList = document.getElementById('pricesAdminList');
+                pricesList.innerHTML = '';
+
+                if (data.length === 0) {
+                    pricesList.innerHTML = '<div class="empty-state">No hay precios cargados</div>';
+                    return;
+                }
+
+                data.forEach(price => {
+                    const item = document.createElement('div');
+                    item.className = 'price-admin-item';
+                    item.innerHTML = `
+                        <div class="price-admin-info">
+                            <div class="price-admin-service">${price.servicio}</div>
+                            <div class="price-admin-order">Orden: ${price.orden}</div>
+                        </div>
+                        <input type="text" class="price-input" value="${price.valor}" onchange="updatePrice(${price.id}, this.value)" />
+                        <button class="action-btn delete-btn" onclick="deletePrice(${price.id})">Eliminar</button>
+                    `;
+                    pricesList.appendChild(item);
+                });
+            } catch (error) {
+                console.error('Error al cargar precios:', error);
+            }
+        }
+
+        // Agregar precio
+        async function addPrice() {
+            const servicio = document.getElementById('newPriceService').value.trim();
+            const valor = document.getElementById('newPriceValue').value.trim();
+
+            if (!servicio || !valor) {
+                alert('Por favor completá ambos campos');
+                return;
+            }
+
+            try {
+                // Obtener el máximo orden actual
+                const { data: existingPrices } = await supabaseClient
+                    .from('precios')
+                    .select('orden')
+                    .order('orden', { ascending: false })
+                    .limit(1);
+
+                const newOrder = existingPrices && existingPrices.length > 0 ? existingPrices[0].orden + 1 : 1;
+
+                const { error } = await supabaseClient
+                    .from('precios')
+                    .insert([{
+                        servicio: servicio,
+                        valor: valor,
+                        orden: newOrder
+                    }]);
+
+                if (error) throw error;
+
+                // Limpiar inputs
+                document.getElementById('newPriceService').value = '';
+                document.getElementById('newPriceValue').value = '';
+
+                alert('Precio agregado exitosamente');
+                loadPrices();
+            } catch (error) {
+                console.error('Error al agregar precio:', error);
+                alert('Error al agregar precio: ' + error.message);
+            }
+        }
+
+        // Actualizar precio
+        async function updatePrice(id, newValue) {
+            try {
+                const { error } = await supabaseClient
+                    .from('precios')
+                    .update({ valor: newValue })
+                    .eq('id', id);
+
+                if (error) throw error;
+
+                console.log('Precio actualizado');
+            } catch (error) {
+                console.error('Error al actualizar precio:', error);
+                alert('Error al actualizar precio: ' + error.message);
+            }
+        }
+
+        // Eliminar precio
+        async function deletePrice(id) {
+            if (!confirm('¿Estás seguro de eliminar este precio?')) {
+                return;
+            }
+
+            try {
+                const { error } = await supabaseClient
+                    .from('precios')
+                    .delete()
+                    .eq('id', id);
+
+                if (error) throw error;
+
+                alert('Precio eliminado exitosamente');
+                loadPrices();
+            } catch (error) {
+                console.error('Error al eliminar precio:', error);
+                alert('Error al eliminar precio: ' + error.message);
+            }
+        }
+
         // Permitir Enter para login
         document.getElementById('password').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
@@ -915,6 +1128,7 @@
             if (document.getElementById('uploadSection').classList.contains('active')) {
                 loadWorks();
                 loadConfig();
+                loadPrices();
             }
         };
     </script>
