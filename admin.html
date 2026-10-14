@@ -931,7 +931,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
         const SUPABASE_URL = 'https://oseyfgdhdfsbqmfyjnwr.supabase.co';
@@ -1407,81 +1407,71 @@
             const budgetNumber = 'PRES-' + Date.now().toString().slice(-8);
             const date = new Date().toLocaleDateString('es-AR');
 
-            // Crear elemento temporal
-            const tempDiv = document.createElement('div');
-            tempDiv.style.position = 'absolute';
-            tempDiv.style.left = '-9999px';
-            tempDiv.style.width = '800px';
-            tempDiv.innerHTML = `
-                <div style="font-family: Arial, sans-serif; padding: 40px; max-width: 800px; margin: 0 auto;">
-                    <div style="text-align: center; margin-bottom: 30px;">
-                        <img src="source/logo.png" alt="Tecno Frío Logo" style="width: 120px; height: auto; margin-bottom: 15px;" />
-                        <h1 style="color: #3f48cc; margin: 0;">Tecno Frío</h1>
-                        <p style="color: #64748B; margin: 5px 0;">Servicio Técnico en Refrigeración</p>
-                        <p style="color: #64748B; margin: 5px 0;">Federal, Entre Ríos</p>
-                    </div>
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
 
-                    <div style="border: 2px solid #3f48cc; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
-                            <div>
-                                <strong>N° Presupuesto:</strong> ${budgetNumber}<br>
-                                <strong>Fecha:</strong> ${date}
-                            </div>
-                            <div style="text-align: right;">
-                                <strong>Válido por:</strong> ${validity} días
-                            </div>
-                        </div>
+            // Configuración de colores
+            const blueColor = [63, 72, 204];
+            const grayColor = [100, 116, 139];
 
-                        <div style="margin-bottom: 15px;">
-                            <strong>Cliente:</strong> ${client}<br>
-                            <strong>Contacto:</strong> ${contact}
-                        </div>
+            // Título y encabezado
+            doc.setFontSize(24);
+            doc.setTextColor(...blueColor);
+            doc.text('Tecno Frío', 105, 30, { align: 'center' });
 
-                        <div style="margin-bottom: 15px;">
-                            <strong>Equipo:</strong> ${equipment}
-                        </div>
+            doc.setFontSize(12);
+            doc.setTextColor(...grayColor);
+            doc.text('Servicio Técnico en Refrigeración', 105, 40, { align: 'center' });
+            doc.text('Federal, Entre Ríos', 105, 48, { align: 'center' });
 
-                        <div style="margin-bottom: 15px;">
-                            <strong>Descripción:</strong><br>
-                            ${description || 'Sin descripción'}
-                        </div>
+            // Marco del presupuesto
+            doc.setDrawColor(...blueColor);
+            doc.setLineWidth(0.5);
+            doc.roundedRect(20, 60, 170, 140, 3, 3, 'S');
 
-                        <div style="border-top: 1px solid #E2E8F0; padding-top: 15px; margin-top: 15px;">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                                <span>Mano de obra:</span>
-                                <span>$${labor.toLocaleString('es-AR')}</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                                <span>Materiales:</span>
-                                <span>$${materials.toLocaleString('es-AR')}</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: bold; color: #3f48cc; margin-top: 10px;">
-                                <span>TOTAL:</span>
-                                <span>$${total.toLocaleString('es-AR')}</span>
-                            </div>
-                        </div>
-                    </div>
+            // Número y fecha
+            doc.setFontSize(10);
+            doc.setTextColor(0, 0, 0);
+            doc.text(`N° Presupuesto: ${budgetNumber}`, 30, 75);
+            doc.text(`Fecha: ${date}`, 30, 83);
+            doc.text(`Válido por: ${validity} días`, 140, 75);
 
-                    <div style="text-align: center; color: #64748B; font-size: 12px; margin-top: 30px;">
-                        <p>Tecno Frío | Servicio Técnico Especializado</p>
-                        <p>Federal, Entre Ríos | Tel: +54 9 3454 480828</p>
-                    </div>
-                </div>
-            `;
+            // Cliente y contacto
+            doc.setFontSize(10);
+            doc.text(`Cliente: ${client}`, 30, 95);
+            doc.text(`Contacto: ${contact}`, 30, 103);
 
-            document.body.appendChild(tempDiv);
+            // Equipo
+            doc.text(`Equipo: ${equipment}`, 30, 113);
 
-            const opt = {
-                margin: 10,
-                filename: `presupuesto_${budgetNumber}.pdf`,
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
+            // Descripción
+            doc.text('Descripción:', 30, 123);
+            const descLines = doc.splitTextToSize(description || 'Sin descripción', 140);
+            doc.text(descLines, 30, 131);
 
-            html2pdf().set(opt).from(tempDiv).save().then(() => {
-                document.body.removeChild(tempDiv);
-            });
+            // Línea separadora
+            doc.setDrawColor(226, 232, 240);
+            doc.line(30, 150, 180, 150);
+
+            // Montos
+            const yPosition = 160;
+            doc.text(`Mano de obra: $${labor.toLocaleString('es-AR')}`, 30, yPosition);
+            doc.text(`Materiales: $${materials.toLocaleString('es-AR')}`, 30, yPosition + 8);
+
+            doc.setFontSize(14);
+            doc.setTextColor(...blueColor);
+            doc.setFont(undefined, 'bold');
+            doc.text(`TOTAL: $${total.toLocaleString('es-AR')}`, 30, yPosition + 20);
+
+            // Pie de página
+            doc.setFontSize(9);
+            doc.setTextColor(...grayColor);
+            doc.setFont(undefined, 'normal');
+            doc.text('Tecno Frío | Servicio Técnico Especializado', 105, 210, { align: 'center' });
+            doc.text('Federal, Entre Ríos | Tel: +54 9 3454 480828', 105, 217, { align: 'center' });
+
+            // Guardar PDF
+            doc.save(`presupuesto_${budgetNumber}.pdf`);
         }
 
         // Generar Recibo PDF
@@ -1500,78 +1490,71 @@
             const receiptNumber = 'REC-' + Date.now().toString().slice(-8);
             const date = new Date().toLocaleDateString('es-AR');
 
-            // Crear elemento temporal
-            const tempDiv = document.createElement('div');
-            tempDiv.style.position = 'absolute';
-            tempDiv.style.left = '-9999px';
-            tempDiv.style.width = '600px';
-            tempDiv.innerHTML = `
-                <div style="font-family: Arial, sans-serif; padding: 40px; max-width: 600px; margin: 0 auto;">
-                    <div style="text-align: center; margin-bottom: 30px;">
-                        <img src="source/logo.png" alt="Tecno Frío Logo" style="width: 120px; height: auto; margin-bottom: 15px;" />
-                        <h1 style="color: #3f48cc; margin: 0;">Tecno Frío</h1>
-                        <p style="color: #64748B; margin: 5px 0;">Comprobante de Servicio</p>
-                    </div>
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
 
-                    <div style="border: 2px solid #3f48cc; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
-                            <div>
-                                <strong>N° Recibo:</strong> ${receiptNumber}<br>
-                                <strong>Fecha:</strong> ${date}
-                            </div>
-                        </div>
+            // Configuración de colores
+            const blueColor = [63, 72, 204];
+            const grayColor = [100, 116, 139];
 
-                        <div style="margin-bottom: 15px;">
-                            <strong>Cliente:</strong> ${client}
-                        </div>
+            // Título y encabezado
+            doc.setFontSize(24);
+            doc.setTextColor(...blueColor);
+            doc.text('Tecno Frío', 105, 30, { align: 'center' });
 
-                        <div style="margin-bottom: 15px;">
-                            <strong>Servicio realizado:</strong><br>
-                            ${concept}
-                        </div>
+            doc.setFontSize(12);
+            doc.setTextColor(...grayColor);
+            doc.text('Comprobante de Servicio', 105, 40, { align: 'center' });
 
-                        <div style="margin-bottom: 15px;">
-                            <strong>Garantía:</strong> ${warranty}
-                        </div>
+            // Marco del recibo
+            doc.setDrawColor(...blueColor);
+            doc.setLineWidth(0.5);
+            doc.roundedRect(20, 60, 170, 120, 3, 3, 'S');
 
-                        <div style="border-top: 1px solid #E2E8F0; padding-top: 15px; margin-top: 15px;">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                                <span>Monto cobrado:</span>
-                                <span>$${amount.toLocaleString('es-AR')}</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                                <span>Medio de pago:</span>
-                                <span>${payment}</span>
-                            </div>
-                        </div>
-                    </div>
+            // Número y fecha
+            doc.setFontSize(10);
+            doc.setTextColor(0, 0, 0);
+            doc.text(`N° Recibo: ${receiptNumber}`, 30, 75);
+            doc.text(`Fecha: ${date}`, 30, 83);
 
-                    <div style="text-align: center; margin-top: 30px;">
-                        <p style="color: #64748B; margin-bottom: 10px;">_________________________</p>
-                        <p style="color: #3f48cc; font-weight: bold;">Tecno Frío</p>
-                        <p style="color: #64748B; font-size: 12px;">Firma digital</p>
-                    </div>
+            // Cliente
+            doc.text(`Cliente: ${client}`, 30, 95);
 
-                    <div style="text-align: center; color: #64748B; font-size: 12px; margin-top: 30px;">
-                        <p>Tecno Frío | Servicio Técnico Especializado</p>
-                        <p>Federal, Entre Ríos | Tel: +54 9 3454 480828</p>
-                    </div>
-                </div>
-            `;
+            // Servicio realizado
+            doc.text('Servicio realizado:', 30, 105);
+            const conceptLines = doc.splitTextToSize(concept, 140);
+            doc.text(conceptLines, 30, 113);
 
-            document.body.appendChild(tempDiv);
+            // Garantía
+            doc.text(`Garantía: ${warranty}`, 30, 123);
 
-            const opt = {
-                margin: 10,
-                filename: `recibo_${receiptNumber}.pdf`,
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
+            // Línea separadora
+            doc.setDrawColor(226, 232, 240);
+            doc.line(30, 130, 180, 130);
 
-            html2pdf().set(opt).from(tempDiv).save().then(() => {
-                document.body.removeChild(tempDiv);
-            });
+            // Monto y medio de pago
+            const yPosition = 140;
+            doc.text(`Monto cobrado: $${amount.toLocaleString('es-AR')}`, 30, yPosition);
+            doc.text(`Medio de pago: ${payment}`, 30, yPosition + 8);
+
+            // Firma
+            doc.setFontSize(10);
+            doc.setTextColor(...grayColor);
+            doc.text('_________________________', 105, 170, { align: 'center' });
+            doc.setTextColor(...blueColor);
+            doc.setFont(undefined, 'bold');
+            doc.text('Tecno Frío', 105, 177, { align: 'center' });
+            doc.setTextColor(...grayColor);
+            doc.setFont(undefined, 'normal');
+            doc.text('Firma digital', 105, 184, { align: 'center' });
+
+            // Pie de página
+            doc.setFontSize(9);
+            doc.text('Tecno Frío | Servicio Técnico Especializado', 105, 210, { align: 'center' });
+            doc.text('Federal, Entre Ríos | Tel: +54 9 3454 480828', 105, 217, { align: 'center' });
+
+            // Guardar PDF
+            doc.save(`recibo_${receiptNumber}.pdf`);
         }
 
         // Generar Sticker QR
