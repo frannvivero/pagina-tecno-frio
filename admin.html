@@ -267,17 +267,6 @@
             box-shadow: none;
         }
 
-        .works-list {
-            margin-top: 32px;
-        }
-
-        .works-list h2 {
-            color: #0F172A;
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-
         .work-item {
             background: #ffffff;
             border-radius: 12px;
@@ -349,7 +338,7 @@
             background: #DC2626;
         }
 
-        .config-section {
+        .works-accordion {
             margin-top: 32px;
         }
 
@@ -454,6 +443,62 @@
             padding: 32px;
             color: #64748B;
             font-size: 14px;
+        }
+
+        .works-accordion {
+            margin-top: 32px;
+        }
+
+        .works-accordion details {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .works-accordion summary {
+            padding: 20px 24px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 16px;
+            color: #0F172A;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            list-style: none;
+            transition: background 0.2s ease;
+        }
+
+        .works-accordion summary:hover {
+            background: #F8FAFC;
+        }
+
+        .works-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .works-accordion summary::after {
+            content: '▼';
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .works-accordion details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .works-count {
+            background: #3f48cc;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .works-accordion-content {
+            padding: 0 24px 24px 24px;
+            border-top: 1px solid #E2E8F0;
         }
 
         .prices-admin-section {
@@ -591,10 +636,17 @@
                 </button>
             </div>
 
-            <!-- Works List -->
-            <div class="works-list">
-                <h2>Trabajos cargados</h2>
-                <div id="worksList"></div>
+            <!-- Works List (Accordion) -->
+            <div class="works-accordion">
+                <details>
+                    <summary>
+                        Trabajos cargados
+                        <span class="works-count" id="worksCount">0</span>
+                    </summary>
+                    <div class="works-accordion-content">
+                        <div id="worksList"></div>
+                    </div>
+                </details>
             </div>
 
             <!-- Config Section -->
@@ -840,7 +892,11 @@
                 if (error) throw error;
 
                 const worksList = document.getElementById('worksList');
+                const worksCount = document.getElementById('worksCount');
                 worksList.innerHTML = '';
+
+                // Actualizar contador
+                worksCount.textContent = data.length;
 
                 if (data.length === 0) {
                     worksList.innerHTML = '<div class="empty-state">No hay trabajos cargados aún</div>';
