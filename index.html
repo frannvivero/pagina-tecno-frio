@@ -446,6 +446,131 @@
             }
         }
 
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .status-badge.open {
+            background: #10B981;
+            color: white;
+        }
+
+        .status-badge.closed {
+            background: #94A3B8;
+            color: white;
+        }
+
+        .phone-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #3f48cc;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .phone-btn:hover {
+            background: #3341a8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(63, 72, 204, 0.3);
+        }
+
+        .brands-section {
+            max-width: 980px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .brands-marquee {
+            display: flex;
+            overflow-x: auto;
+            gap: 24px;
+            padding: 20px 0;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .brands-marquee::-webkit-scrollbar {
+            display: none;
+        }
+
+        .brand-item {
+            flex-shrink: 0;
+            padding: 16px 24px;
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #64748B;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .brand-item:hover {
+            border-color: #3f48cc;
+            color: #3f48cc;
+            transform: translateY(-2px);
+        }
+
+        .technical-section {
+            max-width: 980px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .technical-card {
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 32px 24px;
+            margin-bottom: 16px;
+        }
+
+        .technical-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .technical-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .technical-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .technical-content h4 {
+            color: #0F172A;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .technical-content p {
+            color: #64748B;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
         .prices-section {
             max-width: 980px;
             margin: 40px auto;
@@ -657,6 +782,7 @@
                 <span id="weather-temp">Cargando clima...</span>
                 <span>•</span>
                 <span id="live-clock">--:-- hs</span>
+                <span id="statusBadge" class="status-badge">⚪ Fuera de horario</span>
                 <span id="guardiaBadge" style="display: none;">• <a href="https://wa.me/5493454480828" class="guardia-badge">🟢 <span id="guardiaText">Atendiendo urgencias ahora</span></a></span>
             </p>
 
@@ -724,6 +850,22 @@
                         <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </a>
+
+                <a href="tel:+5493454480828" class="link-card" style="background: #3f48cc; color: white;">
+                    <div class="icon-container">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 16.92v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M15 7a2 2 0 0 1 2 2h4a2 2 0 0 1 2-2h1a2 2 0 0 1 2-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="link-card-content">
+                        <div class="link-card-title">Llamar directo</div>
+                        <div class="link-card-subtitle">📞 Llamada telefónica</div>
+                    </div>
+                    <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
             </div>
         </div>
 
@@ -756,6 +898,69 @@
                 <div class="coverage-area">🏡 Estancias Aledañas</div>
             </div>
             <p class="coverage-note">* Consultar por viáticos para zonas rurales y estancias</p>
+        </div>
+    </div>
+
+    <!-- Marcas Atendidas -->
+    <div class="brands-section">
+        <h2 class="section-title">Especialistas en primeras marcas</h2>
+        <div class="brands-marquee">
+            <div class="brand-item">BGH</div>
+            <div class="brand-item">Surrey</div>
+            <div class="brand-item">Philco</div>
+            <div class="brand-item">Samsung</div>
+            <div class="brand-item">LG</div>
+            <div class="brand-item">Midea</div>
+            <div class="brand-item">Whirlpool</div>
+            <div class="brand-item">Gafa</div>
+            <div class="brand-item">Electrolux</div>
+        </div>
+    </div>
+
+    <!-- Sección Técnica -->
+    <div class="technical-section">
+        <h2 class="section-title">Por qué elegir un servicio técnico profesional</h2>
+        <div class="technical-card">
+            <div class="technical-item">
+                <svg class="technical-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" stroke="#10B981" stroke-width="2"/>
+                    <path d="M8 12L11 15L16 9" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div class="technical-content">
+                    <h4>Vacío con bomba de doble etapa</h4>
+                    <p>Evita humedad y rotura prematura del compresor (vs. el simple "barrido" con gas).</p>
+                </div>
+            </div>
+            <div class="technical-item">
+                <svg class="technical-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" stroke="#10B981" stroke-width="2"/>
+                    <path d="M8 12L11 15L16 9" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div class="technical-content">
+                    <h4>Cañería reglamentaria de cobre</h4>
+                    <p>Mínimo 3 metros de norma para evitar vibraciones y pérdida de rendimiento.</p>
+                </div>
+            </div>
+            <div class="technical-item">
+                <svg class="technical-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" stroke="#10B981" stroke-width="2"/>
+                    <path d="M8 12L11 15L16 9" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div class="technical-content">
+                    <h4>Presurización con nitrógeno</h4>
+                    <p>Detección real de micropérdidas antes de cargar refrigerante.</p>
+                </div>
+            </div>
+            <div class="technical-item">
+                <svg class="technical-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" stroke="#10B981" stroke-width="2"/>
+                    <path d="M8 12L11 15L16 9" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div class="technical-content">
+                    <h4>Carga por peso con balanza digital</h4>
+                    <p>Según especificación de placa de fábrica para garantizar eficiencia.</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -794,7 +999,7 @@
         // Clock update - Argentina time
         function updateClock() {
             const now = new Date();
-            const options = { 
+            const options = {
                 timeZone: 'America/Argentina/Cordoba',
                 hour: '2-digit',
                 minute: '2-digit',
@@ -802,6 +1007,51 @@
             };
             const timeString = now.toLocaleTimeString('es-AR', options);
             document.getElementById('live-clock').textContent = timeString + ' hs';
+        }
+
+        // Check business hours status
+        function updateBusinessStatus() {
+            const now = new Date();
+            const argentinaTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Argentina/Cordoba' }));
+
+            const day = argentinaTime.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+            const hour = argentinaTime.getHours();
+            const minute = argentinaTime.getMinutes();
+            const currentTime = hour * 60 + minute; // Convert to minutes for easier comparison
+
+            const statusBadge = document.getElementById('statusBadge');
+
+            // Business hours:
+            // Monday to Friday: 08:00-12:30 and 16:00-20:00
+            // Saturday: 08:00-12:30
+            // Sunday: Closed
+
+            const morningStart = 8 * 60; // 08:00
+            const morningEnd = 12 * 60 + 30; // 12:30
+            const afternoonStart = 16 * 60; // 16:00
+            const afternoonEnd = 20 * 60; // 20:00
+
+            let isOpen = false;
+
+            if (day === 0) {
+                // Sunday: closed
+                isOpen = false;
+            } else if (day === 6) {
+                // Saturday: 08:00-12:30
+                isOpen = currentTime >= morningStart && currentTime <= morningEnd;
+            } else {
+                // Monday to Friday: 08:00-12:30 and 16:00-20:00
+                isOpen = (currentTime >= morningStart && currentTime <= morningEnd) ||
+                         (currentTime >= afternoonStart && currentTime <= afternoonEnd);
+            }
+
+            if (isOpen) {
+                statusBadge.className = 'status-badge open';
+                statusBadge.textContent = '🟢 Abierto ahora / Atendiendo en taller';
+            } else {
+                statusBadge.className = 'status-badge closed';
+                statusBadge.textContent = '⚪ Fuera de horario comercial';
+            }
         }
 
         // Weather update - Federal, Entre Ríos
@@ -846,6 +1096,8 @@
         // Initialize
         updateClock();
         setInterval(updateClock, 1000);
+        updateBusinessStatus();
+        setInterval(updateBusinessStatus, 60000); // Update every minute
         updateWeather();
 
         // Load configuration from Supabase

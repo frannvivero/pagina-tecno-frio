@@ -124,6 +124,119 @@
             display: block;
         }
 
+        .document-section {
+            margin-top: 32px;
+        }
+
+        .document-section details {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .document-section summary {
+            padding: 20px 24px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 16px;
+            color: #0F172A;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            list-style: none;
+            transition: background 0.2s ease;
+        }
+
+        .document-section summary:hover {
+            background: #F8FAFC;
+        }
+
+        .document-section summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .document-section summary::after {
+            content: '▼';
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .document-section details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .document-content {
+            padding: 0 24px 24px 24px;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        .document-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .document-form label {
+            color: #0F172A;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .document-form input,
+        .document-form textarea,
+        .document-form select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .document-form textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .document-form .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .document-btn {
+            background: #3f48cc;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .document-btn:hover {
+            background: #3341a8;
+            transform: translateY(-2px);
+        }
+
+        .qr-preview {
+            margin-top: 16px;
+            padding: 24px;
+            background: #ffffff;
+            border: 2px dashed #E2E8F0;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .qr-preview canvas {
+            margin: 0 auto;
+        }
+
         .upload-card {
             background: #ffffff;
             border-radius: 16px;
@@ -705,6 +818,109 @@
                     <button class="add-price-btn" onclick="addPrice()">Agregar</button>
                 </div>
             </div>
+
+            <!-- Documentos Section -->
+            <div class="document-section">
+                <h2 style="color: #0F172A; font-size: 18px; font-weight: 700; margin-bottom: 16px;">Generador de Documentos</h2>
+
+                <!-- Generador de Presupuestos -->
+                <details>
+                    <summary>Generador de Presupuestos PDF</summary>
+                    <div class="document-content">
+                        <div class="document-form">
+                            <label>Nombre del cliente / Comercio</label>
+                            <input type="text" id="budgetClient" placeholder="Nombre completo" />
+
+                            <label>Teléfono / Dirección</label>
+                            <input type="text" id="budgetContact" placeholder="Teléfono y dirección" />
+
+                            <label>Equipo</label>
+                            <input type="text" id="budgetEquipment" placeholder="Ej: Split 3000F, Heladera exhibidora" />
+
+                            <label>Descripción de tareas y repuestos</label>
+                            <textarea id="budgetDescription" placeholder="Detalle de los trabajos a realizar y materiales..."></textarea>
+
+                            <div class="row">
+                                <div>
+                                    <label>Mano de obra ($)</label>
+                                    <input type="number" id="budgetLabor" placeholder="0" />
+                                </div>
+                                <div>
+                                    <label>Materiales ($)</label>
+                                    <input type="number" id="budgetMaterials" placeholder="0" />
+                                </div>
+                            </div>
+
+                            <label>Validez del presupuesto</label>
+                            <select id="budgetValidity">
+                                <option value="7">7 días</option>
+                                <option value="15">15 días</option>
+                                <option value="30">30 días</option>
+                            </select>
+
+                            <button class="document-btn" onclick="generateBudgetPDF()">Descargar Presupuesto en PDF</button>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Generador de Recibo -->
+                <details>
+                    <summary>Emitir Recibo / Comprobante de Servicio</summary>
+                    <div class="document-content">
+                        <div class="document-form">
+                            <label>Nombre del cliente</label>
+                            <input type="text" id="receiptClient" placeholder="Nombre completo" />
+
+                            <label>Concepto / Reparación realizada</label>
+                            <textarea id="receiptConcept" placeholder="Descripción del servicio..."></textarea>
+
+                            <label>Garantía otorgada</label>
+                            <select id="receiptWarranty">
+                                <option value="3 meses">3 meses</option>
+                                <option value="6 meses">6 meses</option>
+                                <option value="12 meses">12 meses</option>
+                            </select>
+
+                            <div class="row">
+                                <div>
+                                    <label>Monto cobrado ($)</label>
+                                    <input type="number" id="receiptAmount" placeholder="0" />
+                                </div>
+                                <div>
+                                    <label>Medio de pago</label>
+                                    <select id="receiptPayment">
+                                        <option value="Efectivo">Efectivo</option>
+                                        <option value="Transferencia">Transferencia</option>
+                                        <option value="Tarjeta">Tarjeta</option>
+                                        <option value="Mercado Pago">Mercado Pago</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button class="document-btn" onclick="generateReceiptPDF()">Generar Recibo PDF</button>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Generador de Sticker QR -->
+                <details>
+                    <summary>Generar Sticker con Código QR</summary>
+                    <div class="document-content">
+                        <div class="document-form">
+                            <p style="color: #64748B; font-size: 14px; margin-bottom: 16px;">
+                                Genera un sticker de 10x7 cm con el código QR que apunta a la web de Tecno Frío.
+                            </p>
+
+                            <div class="qr-preview" id="qrPreview">
+                                <div id="qrcode"></div>
+                            </div>
+
+                            <button class="document-btn" onclick="generateQRSticker()">Generar Sticker</button>
+                            <button class="document-btn" onclick="printQRSticker()" style="background: #10B981; margin-top: 8px;">Imprimir Sticker</button>
+                        </div>
+                    </div>
+                </details>
+            </div>
         </div>
     </div>
 
@@ -715,6 +931,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
         const SUPABASE_URL = 'https://oseyfgdhdfsbqmfyjnwr.supabase.co';
         const SUPABASE_KEY = 'sb_publishable_ApxmknN4MSf9XczzG5Asjw_cuKZwpyK';
@@ -1168,6 +1386,275 @@
                 console.error('Error al eliminar precio:', error);
                 alert('Error al eliminar precio: ' + error.message);
             }
+        }
+
+        // Generar Presupuesto PDF
+        function generateBudgetPDF() {
+            const client = document.getElementById('budgetClient').value;
+            const contact = document.getElementById('budgetContact').value;
+            const equipment = document.getElementById('budgetEquipment').value;
+            const description = document.getElementById('budgetDescription').value;
+            const labor = parseFloat(document.getElementById('budgetLabor').value) || 0;
+            const materials = parseFloat(document.getElementById('budgetMaterials').value) || 0;
+            const validity = document.getElementById('budgetValidity').value;
+            const total = labor + materials;
+
+            if (!client || !equipment) {
+                alert('Por favor completá al menos el nombre del cliente y el equipo');
+                return;
+            }
+
+            const budgetNumber = 'PRES-' + Date.now().toString().slice(-8);
+            const date = new Date().toLocaleDateString('es-AR');
+
+            const content = `
+                <div style="font-family: Arial, sans-serif; padding: 40px; max-width: 800px; margin: 0 auto;">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h1 style="color: #3f48cc; margin: 0;">Tecno Frío</h1>
+                        <p style="color: #64748B; margin: 5px 0;">Servicio Técnico en Refrigeración</p>
+                        <p style="color: #64748B; margin: 5px 0;">Federal, Entre Ríos</p>
+                    </div>
+
+                    <div style="border: 2px solid #3f48cc; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                            <div>
+                                <strong>N° Presupuesto:</strong> ${budgetNumber}<br>
+                                <strong>Fecha:</strong> ${date}
+                            </div>
+                            <div style="text-align: right;">
+                                <strong>Válido por:</strong> ${validity} días
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <strong>Cliente:</strong> ${client}<br>
+                            <strong>Contacto:</strong> ${contact}
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <strong>Equipo:</strong> ${equipment}
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <strong>Descripción:</strong><br>
+                            ${description || 'Sin descripción'}
+                        </div>
+
+                        <div style="border-top: 1px solid #E2E8F0; padding-top: 15px; margin-top: 15px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span>Mano de obra:</span>
+                                <span>$${labor.toLocaleString('es-AR')}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span>Materiales:</span>
+                                <span>$${materials.toLocaleString('es-AR')}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: bold; color: #3f48cc; margin-top: 10px;">
+                                <span>TOTAL:</span>
+                                <span>$${total.toLocaleString('es-AR')}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; color: #64748B; font-size: 12px; margin-top: 30px;">
+                        <p>Tecno Frío | Servicio Técnico Especializado</p>
+                        <p>Federal, Entre Ríos | Tel: +54 9 3454 480828</p>
+                    </div>
+                </div>
+            `;
+
+            const opt = {
+                margin: 10,
+                filename: `presupuesto_${budgetNumber}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(content).save();
+        }
+
+        // Generar Recibo PDF
+        function generateReceiptPDF() {
+            const client = document.getElementById('receiptClient').value;
+            const concept = document.getElementById('receiptConcept').value;
+            const warranty = document.getElementById('receiptWarranty').value;
+            const amount = parseFloat(document.getElementById('receiptAmount').value) || 0;
+            const payment = document.getElementById('receiptPayment').value;
+
+            if (!client || !concept) {
+                alert('Por favor completá el nombre del cliente y el concepto');
+                return;
+            }
+
+            const receiptNumber = 'REC-' + Date.now().toString().slice(-8);
+            const date = new Date().toLocaleDateString('es-AR');
+
+            const content = `
+                <div style="font-family: Arial, sans-serif; padding: 40px; max-width: 600px; margin: 0 auto;">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h1 style="color: #3f48cc; margin: 0;">Tecno Frío</h1>
+                        <p style="color: #64748B; margin: 5px 0;">Comprobante de Servicio</p>
+                    </div>
+
+                    <div style="border: 2px solid #3f48cc; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                            <div>
+                                <strong>N° Recibo:</strong> ${receiptNumber}<br>
+                                <strong>Fecha:</strong> ${date}
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <strong>Cliente:</strong> ${client}
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <strong>Servicio realizado:</strong><br>
+                            ${concept}
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <strong>Garantía:</strong> ${warranty}
+                        </div>
+
+                        <div style="border-top: 1px solid #E2E8F0; padding-top: 15px; margin-top: 15px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span>Monto cobrado:</span>
+                                <span>$${amount.toLocaleString('es-AR')}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span>Medio de pago:</span>
+                                <span>${payment}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <p style="color: #64748B; margin-bottom: 10px;">_________________________</p>
+                        <p style="color: #3f48cc; font-weight: bold;">Tecno Frío</p>
+                        <p style="color: #64748B; font-size: 12px;">Firma digital</p>
+                    </div>
+
+                    <div style="text-align: center; color: #64748B; font-size: 12px; margin-top: 30px;">
+                        <p>Tecno Frío | Servicio Técnico Especializado</p>
+                        <p>Federal, Entre Ríos | Tel: +54 9 3454 480828</p>
+                    </div>
+                </div>
+            `;
+
+            const opt = {
+                margin: 10,
+                filename: `recibo_${receiptNumber}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(content).save();
+        }
+
+        // Generar Sticker QR
+        function generateQRSticker() {
+            const qrContainer = document.getElementById('qrcode');
+            qrContainer.innerHTML = '';
+
+            new QRCode(qrContainer, {
+                text: 'https://tecno-frio.vercel.app',
+                width: 128,
+                height: 128,
+                colorDark: '#3f48cc',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
+
+        // Imprimir Sticker QR
+        function printQRSticker() {
+            const qrContainer = document.getElementById('qrcode');
+            if (qrContainer.innerHTML === '') {
+                alert('Primero generá el código QR');
+                return;
+            }
+
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                <head>
+                    <title>Sticker Tecno Frío</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            width: 10cm;
+                            height: 7cm;
+                            padding: 10px;
+                            margin: 0;
+                            box-sizing: border-box;
+                            border: 1px solid #000;
+                        }
+                        .header {
+                            text-align: center;
+                            margin-bottom: 10px;
+                        }
+                        .header h1 {
+                            color: #3f48cc;
+                            margin: 0;
+                            font-size: 14px;
+                        }
+                        .header p {
+                            margin: 2px 0;
+                            font-size: 8px;
+                            color: #64748B;
+                        }
+                        .qr-container {
+                            text-align: center;
+                            margin: 10px 0;
+                        }
+                        .qr-container img {
+                            width: 80px;
+                            height: 80px;
+                        }
+                        .footer {
+                            text-align: center;
+                            margin-top: 10px;
+                        }
+                        .footer p {
+                            margin: 5px 0;
+                            font-size: 8px;
+                            color: #64748B;
+                        }
+                        .handwritten {
+                            border-top: 1px dashed #000;
+                            padding-top: 5px;
+                            margin-top: 10px;
+                        }
+                        .handwritten p {
+                            margin: 3px 0;
+                            font-size: 9px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h1>Tecno Frío</h1>
+                        <p>Servicio Técnico Especializado</p>
+                        <p>Refrigeración y Climatización</p>
+                    </div>
+                    <div class="qr-container">
+                        ${qrContainer.innerHTML}
+                    </div>
+                    <div class="footer">
+                        <p><strong>Federal (E.R.)</strong></p>
+                        <p>Tel: +54 9 3454 480828</p>
+                    </div>
+                    <div class="handwritten">
+                        <p>Fecha: ___ / ___ / ___ | Service: ____________</p>
+                    </div>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            printWindow.print();
         }
 
         // Permitir Enter para login
