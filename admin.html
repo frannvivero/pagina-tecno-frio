@@ -1560,68 +1560,136 @@
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
 
-            // Configuración de colores
-            const blueColor = [63, 72, 204];
-            const grayColor = [100, 116, 139];
+            // Cargar logo
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.src = 'source/logo.png';
 
-            // Título y encabezado
-            doc.setFontSize(24);
-            doc.setTextColor(...blueColor);
-            doc.text('Tecno Frío', 105, 30, { align: 'center' });
+            img.onload = function() {
+                // Configuración de colores
+                const blueColor = [63, 72, 204];
+                const grayColor = [100, 116, 139];
 
-            doc.setFontSize(12);
-            doc.setTextColor(...grayColor);
-            doc.text('Comprobante de Servicio', 105, 40, { align: 'center' });
+                // Agregar logo centrado
+                const logoWidth = 40;
+                const logoHeight = 40;
+                const logoX = (210 - logoWidth) / 2;
+                doc.addImage(img, 'PNG', logoX, 15, logoWidth, logoHeight);
 
-            // Marco del recibo
-            doc.setDrawColor(...blueColor);
-            doc.setLineWidth(0.5);
-            doc.roundedRect(20, 60, 170, 120, 3, 3, 'S');
+                // Título y encabezado
+                doc.setFontSize(24);
+                doc.setTextColor(...blueColor);
+                doc.text('Tecno Frío', 105, 65, { align: 'center' });
 
-            // Número y fecha
-            doc.setFontSize(10);
-            doc.setTextColor(0, 0, 0);
-            doc.text(`N° Recibo: ${receiptNumber}`, 30, 75);
-            doc.text(`Fecha: ${date}`, 30, 83);
+                doc.setFontSize(12);
+                doc.setTextColor(...grayColor);
+                doc.text('Comprobante de Servicio', 105, 75, { align: 'center' });
 
-            // Cliente
-            doc.text(`Cliente: ${client}`, 30, 95);
+                // Marco del recibo
+                doc.setDrawColor(...blueColor);
+                doc.setLineWidth(0.5);
+                doc.roundedRect(20, 95, 170, 120, 3, 3, 'S');
 
-            // Servicio realizado
-            doc.text('Servicio realizado:', 30, 105);
-            const conceptLines = doc.splitTextToSize(concept, 140);
-            doc.text(conceptLines, 30, 113);
+                // Número y fecha
+                doc.setFontSize(10);
+                doc.setTextColor(0, 0, 0);
+                doc.text(`N° Recibo: ${receiptNumber}`, 30, 110);
+                doc.text(`Fecha: ${date}`, 30, 118);
 
-            // Garantía
-            doc.text(`Garantía: ${warranty}`, 30, 123);
+                // Cliente
+                doc.text(`Cliente: ${client}`, 30, 130);
 
-            // Línea separadora
-            doc.setDrawColor(226, 232, 240);
-            doc.line(30, 130, 180, 130);
+                // Servicio realizado
+                doc.text('Servicio realizado:', 30, 140);
+                const conceptLines = doc.splitTextToSize(concept, 140);
+                doc.text(conceptLines, 30, 148);
 
-            // Monto y medio de pago
-            const yPosition = 140;
-            doc.text(`Monto cobrado: $${amount.toLocaleString('es-AR')}`, 30, yPosition);
-            doc.text(`Medio de pago: ${payment}`, 30, yPosition + 8);
+                // Garantía
+                doc.text(`Garantía: ${warranty}`, 30, 158);
 
-            // Firma
-            doc.setFontSize(10);
-            doc.setTextColor(...grayColor);
-            doc.text('_________________________', 105, 170, { align: 'center' });
-            doc.setTextColor(...blueColor);
-            doc.setFont(undefined, 'bold');
-            doc.text('Tecno Frío', 105, 177, { align: 'center' });
-            doc.setTextColor(...grayColor);
-            doc.setFont(undefined, 'normal');
-            doc.text('Firma digital', 105, 184, { align: 'center' });
+                // Línea separadora
+                doc.setDrawColor(226, 232, 240);
+                doc.line(30, 165, 180, 165);
 
-            // Pie de página
-            doc.setFontSize(9);
-            doc.text('Tecno Frío | Servicio Técnico Especializado', 105, 210, { align: 'center' });
-            doc.text('Federal, Entre Ríos | Tel: +54 9 3454 480828', 105, 217, { align: 'center' });
+                // Monto y medio de pago
+                const yPosition = 175;
+                doc.text(`Monto cobrado: $${amount.toLocaleString('es-AR')}`, 30, yPosition);
+                doc.text(`Medio de pago: ${payment}`, 30, yPosition + 8);
 
-            // Guardar PDF
-            doc.save(`recibo_${receiptNumber}.pdf`);
+                // Firma
+                doc.setFontSize(10);
+                doc.setTextColor(...grayColor);
+                doc.text('_________________________', 105, 205, { align: 'center' });
+                doc.setTextColor(...blueColor);
+                doc.setFont(undefined, 'bold');
+                doc.text('Tecno Frío', 105, 212, { align: 'center' });
+                doc.setTextColor(...grayColor);
+                doc.setFont(undefined, 'normal');
+                doc.text('Firma digital', 105, 219, { align: 'center' });
+
+                // Pie de página
+                doc.setFontSize(9);
+                doc.text('Tecno Frío | Servicio Técnico Especializado', 105, 245, { align: 'center' });
+                doc.text('Federal, Entre Ríos | Tel: +54 9 3454 480828', 105, 252, { align: 'center' });
+
+                // Guardar PDF
+                doc.save(`recibo_${receiptNumber}.pdf`);
+            };
+
+            img.onerror = function() {
+                alert('Error al cargar el logo. Se generará el PDF sin logo.');
+                // Generar PDF sin logo
+                const blueColor = [63, 72, 204];
+                const grayColor = [100, 116, 139];
+
+                doc.setFontSize(24);
+                doc.setTextColor(...blueColor);
+                doc.text('Tecno Frío', 105, 30, { align: 'center' });
+
+                doc.setFontSize(12);
+                doc.setTextColor(...grayColor);
+                doc.text('Comprobante de Servicio', 105, 40, { align: 'center' });
+
+                doc.setDrawColor(...blueColor);
+                doc.setLineWidth(0.5);
+                doc.roundedRect(20, 60, 170, 120, 3, 3, 'S');
+
+                doc.setFontSize(10);
+                doc.setTextColor(0, 0, 0);
+                doc.text(`N° Recibo: ${receiptNumber}`, 30, 75);
+                doc.text(`Fecha: ${date}`, 30, 83);
+
+                doc.text(`Cliente: ${client}`, 30, 95);
+
+                doc.text('Servicio realizado:', 30, 105);
+                const conceptLines = doc.splitTextToSize(concept, 140);
+                doc.text(conceptLines, 30, 113);
+
+                doc.text(`Garantía: ${warranty}`, 30, 123);
+
+                doc.setDrawColor(226, 232, 240);
+                doc.line(30, 130, 180, 130);
+
+                const yPosition = 140;
+                doc.text(`Monto cobrado: $${amount.toLocaleString('es-AR')}`, 30, yPosition);
+                doc.text(`Medio de pago: ${payment}`, 30, yPosition + 8);
+
+                doc.setFontSize(10);
+                doc.setTextColor(...grayColor);
+                doc.text('_________________________', 105, 170, { align: 'center' });
+                doc.setTextColor(...blueColor);
+                doc.setFont(undefined, 'bold');
+                doc.text('Tecno Frío', 105, 177, { align: 'center' });
+                doc.setTextColor(...grayColor);
+                doc.setFont(undefined, 'normal');
+                doc.text('Firma digital', 105, 184, { align: 'center' });
+
+                doc.setFontSize(9);
+                doc.text('Tecno Frío | Servicio Técnico Especializado', 105, 210, { align: 'center' });
+                doc.text('Federal, Entre Ríos | Tel: +54 9 3454 480828', 105, 217, { align: 'center' });
+
+                doc.save(`recibo_${receiptNumber}.pdf`);
+            };
         }
 
         // Generar Sticker QR
@@ -1664,48 +1732,54 @@
                         }
                         .header {
                             text-align: center;
-                            margin-bottom: 10px;
+                            margin-bottom: 8px;
+                        }
+                        .logo {
+                            width: 40px;
+                            height: 40px;
+                            margin: 0 auto 5px auto;
                         }
                         .header h1 {
                             color: #3f48cc;
                             margin: 0;
-                            font-size: 14px;
+                            font-size: 12px;
                         }
                         .header p {
                             margin: 2px 0;
-                            font-size: 8px;
+                            font-size: 7px;
                             color: #64748B;
                         }
                         .qr-container {
                             text-align: center;
-                            margin: 10px 0;
+                            margin: 8px 0;
                         }
                         .qr-container img {
-                            width: 80px;
-                            height: 80px;
+                            width: 70px;
+                            height: 70px;
                         }
                         .footer {
                             text-align: center;
-                            margin-top: 10px;
+                            margin-top: 8px;
                         }
                         .footer p {
-                            margin: 5px 0;
-                            font-size: 8px;
+                            margin: 3px 0;
+                            font-size: 7px;
                             color: #64748B;
                         }
                         .handwritten {
                             border-top: 1px dashed #000;
-                            padding-top: 5px;
-                            margin-top: 10px;
+                            padding-top: 4px;
+                            margin-top: 8px;
                         }
                         .handwritten p {
-                            margin: 3px 0;
-                            font-size: 9px;
+                            margin: 2px 0;
+                            font-size: 8px;
                         }
                     </style>
                 </head>
                 <body>
                     <div class="header">
+                        <img src="source/logo.png" alt="Tecno Frío Logo" class="logo" />
                         <h1>Tecno Frío</h1>
                         <p>Servicio Técnico Especializado</p>
                         <p>Refrigeración y Climatización</p>
