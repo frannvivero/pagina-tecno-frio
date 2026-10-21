@@ -84,6 +84,36 @@
             width: 100%;
         }
 
+        /* Desktop layout: 2 columns for buttons and prices */
+        @media (min-width: 992px) {
+            .main-wrapper {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+                align-items: start;
+            }
+
+            .left-column {
+                max-width: 100%;
+            }
+
+            .right-column {
+                max-width: 100%;
+            }
+        }
+
+        /* Mobile: vertical layout with prices below buttons */
+        @media (max-width: 991px) {
+            .main-wrapper {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .right-column {
+                margin-top: 28px;
+            }
+        }
+
         .logo-container {
             margin-bottom: 25px;
         }
@@ -719,54 +749,50 @@
         }
 
         body.dark-mode {
-            --bg-primary: #0F172A;
-            --bg-secondary: #1E293B;
-            --text-primary: #F1F5F9;
-            --text-secondary: #94A3B8;
-            --border-color: #334155;
+            background: #0f172a;
         }
 
         body.dark-mode .header {
-            background: #1E293B;
+            background: #1e293b;
         }
 
         body.dark-mode .header-content h1 {
-            color: #F1F5F9;
+            color: #f8fafc;
         }
 
         body.dark-mode .header-content p {
-            color: #94A3B8;
+            color: #cbd5e1;
         }
 
         body.dark-mode .location-weather {
-            color: #94A3B8;
+            color: #cbd5e1;
         }
 
         body.dark-mode .tag {
             background: #334155;
-            color: #F1F5F9;
+            color: #f8fafc;
         }
 
         body.dark-mode .link-card {
-            background: #1E293B;
+            background: #1e293b;
             border-color: #334155;
         }
 
         body.dark-mode .link-card-title {
-            color: #F1F5F9;
+            color: #f8fafc;
         }
 
         body.dark-mode .link-card-subtitle {
-            color: #94A3B8;
+            color: #cbd5e1;
         }
 
         body.dark-mode .right-column {
-            background: #1E293B;
+            background: #1e293b;
             border-color: #334155;
         }
 
         body.dark-mode .section-title {
-            color: #F1F5F9;
+            color: #f8fafc;
         }
 
         body.dark-mode .price-card,
@@ -775,7 +801,7 @@
         body.dark-mode .payment-card,
         body.dark-mode .calculator-card,
         body.dark-mode .faq-item {
-            background: #1E293B;
+            background: #1e293b;
             border-color: #334155;
         }
 
@@ -784,7 +810,7 @@
         body.dark-mode .coverage-main,
         body.dark-mode .calculator-result h3,
         body.dark-mode .faq-item summary {
-            color: #F1F5F9;
+            color: #f8fafc;
         }
 
         body.dark-mode .price-disclaimer,
@@ -793,23 +819,23 @@
         body.dark-mode .payment-discount,
         body.dark-mode .calculator-result p,
         body.dark-mode .faq-content {
-            color: #94A3B8;
+            color: #cbd5e1;
         }
 
         body.dark-mode .coverage-area {
             background: #334155;
-            color: #F1F5F9;
+            color: #f8fafc;
         }
 
         body.dark-mode .calculator-field label {
-            color: #F1F5F9;
+            color: #f8fafc;
         }
 
         body.dark-mode .calculator-field input,
         body.dark-mode .calculator-field select {
             background: #334155;
             border-color: #475569;
-            color: #F1F5F9;
+            color: #f8fafc;
         }
 
         body.dark-mode .calculator-result {
@@ -817,7 +843,25 @@
         }
 
         body.dark-mode .footer {
-            color: #94A3B8;
+            color: #cbd5e1;
+        }
+
+        body.dark-mode .payment-name {
+            color: #f8fafc;
+        }
+
+        body.dark-mode .prices-grid {
+            display: grid;
+        }
+
+        body.dark-mode .dark-mode-toggle {
+            background: #1e293b;
+            border-color: #475569;
+        }
+
+        body.dark-mode .whatsapp-mascot-bubble {
+            background: #1e293b;
+            color: #f8fafc;
         }
 
         @media (max-width: 768px) {
@@ -1130,18 +1174,17 @@
         </div>
 
         <div class="right-column">
-        </div>
-    </div>
-
-    <!-- Precios de Referencia -->
-    <div class="prices-section">
-        <h2 class="section-title">Precios de Referencia</h2>
-        <div class="prices-grid" id="pricesGrid">
-            <div class="price-card">
-                <div class="price-service">Cargando precios...</div>
+            <!-- Precios de Referencia -->
+            <div class="prices-section" style="margin: 0;">
+                <h2 class="section-title" style="font-size: 20px; margin-bottom: 16px;">Precios de Referencia</h2>
+                <div class="prices-grid" id="pricesGrid">
+                    <div class="price-card">
+                        <div class="price-service">Cargando precios...</div>
+                    </div>
+                </div>
+                <p class="prices-disclaimer">* Valores sujetos a revisión del equipo o materiales adicionales</p>
             </div>
         </div>
-        <p class="prices-disclaimer">* Valores sujetos a revisión del equipo o materiales adicionales</p>
     </div>
 
     <!-- Calculadora de Frigorías -->
