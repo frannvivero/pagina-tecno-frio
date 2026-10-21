@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 404 - Tecno Frío</title>
+    <link rel="icon" type="image/png" href="source/logo.png">
+    <meta name="theme-color" content="#3f48cc">
+
+    <!-- Open Graph / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tecno-frio.vercel.app/404.html" />
+    <meta property="og:title" content="Error 404 - Tecno Frío" />
+    <meta property="og:description" content="Página no encontrada. Volvé al inicio o consultanos directamente." />
+    <meta property="og:image" content="https://tecno-frio.vercel.app/source/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Error 404 - Tecno Frío" />
+    <meta name="twitter:description" content="Página no encontrada. Volvé al inicio o consultanos directamente." />
+    <meta name="twitter:image" content="https://tecno-frio.vercel.app/source/og-image.jpg" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #ffffff;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .error-badge {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #3f48cc;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+
+        .error-image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-height: 185px;
+            width: auto;
+            object-fit: contain;
+            margin-bottom: 12px;
+            transform: translateX(6px);
+        }
+
+        h1 {
+            color: #3f48cc;
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        p {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #3f48cc;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #3341a8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(63, 72, 204, 0.3);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            background: #22c55e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            p {
+                font-size: 0.85rem;
+            }
+
+            .btn {
+                padding: 10px 14px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-badge">ERROR 404</div>
+        <img src="source/perro-404.png" alt="Página no encontrada" class="error-image">
+        <h1>Parece que este circuito se congeló ❄️</h1>
+        <p>El enlace que buscás no existe o fue desconectado. No te preocupes, volvé al inicio o consultanos directamente.</p>
+        <div class="buttons">
+            <a href="index.html" class="btn btn-primary">🏠 Volver al inicio</a>
+            <a href="https://wa.me/5493454480828?text=Hola%20Tecno%20Fr%C3%ADo,%20estaba%20en%20la%20web%20y%20no%20encontr%C3%A9%20lo%20que%20buscaba" class="btn btn-whatsapp" target="_blank">💬 Consultar por WhatsApp</a>
+        </div>
+    </div>
+</body>
+</html>

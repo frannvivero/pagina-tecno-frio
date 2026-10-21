@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecno Frío | Servicio técnico en refrigeración</title>
+    <link rel="icon" type="image/png" href="source/logo.png">
+    <meta name="theme-color" content="#3f48cc">
+
+    <!-- Open Graph / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tecno-frio.vercel.app/" />
+    <meta property="og:title" content="Tecno Frío | Servicio Técnico en Refrigeración" />
+    <meta property="og:description" content="Instalación y reparación de aires acondicionados, heladeras familiares y comerciales en Federal, Entre Ríos." />
+    <meta property="og:image" content="https://tecno-frio.vercel.app/source/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tecno Frío | Servicio Técnico en Refrigeración" />
+    <meta name="twitter:description" content="Instalación y reparación de aires acondicionados, heladeras familiares y comerciales en Federal, Entre Ríos." />
+    <meta name="twitter:image" content="https://tecno-frio.vercel.app/source/og-image.jpg" />
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tecno-frio.vercel.app/">
+<meta property="og:title" content="Tecno Frío | Servicio Técnico en Refrigeración">
+<meta property="og:description" content="Instalación y reparación de aires acondicionados, heladeras familiares y comerciales en Federal, Entre Ríos.">
+<meta property="og:image" content="https://tecno-frio.vercel.app/source/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tecno-frio.vercel.app/source/og-image.jpg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(180deg, #F1F5F9 0%, #FFFFFF 100%);
+            min-height: 100vh;
+            padding-bottom: 30px;
+            transition: padding-top 0.3s ease;
+        }
+
+        body.with-banner {
+            padding-top: 54px;
+        }
+
+        .header {
+            background: #3f48cc;
+            width: 100%;
+            padding: 40px 20px 24px 20px;
+        }
+
+        .header-content {
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .main-wrapper {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 980px;
+            margin: 24px auto;
+            padding: 0 20px;
+        }
+
+        .left-column {
+            width: 100%;
+        }
+
+        .right-column {
+            width: 100%;
+        }
+
+        .logo-container {
+            margin-bottom: 25px;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+        }
+
+        h1 {
+            color: #FFFFFF;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            padding: 0 16px;
+            margin-bottom: 0;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: #FFFFFF;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            padding: 14px 22px;
+            border-radius: 14px;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .link-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .link-card:active {
+            transform: scale(0.98);
+        }
+
+        .link-card.whatsapp {
+            background: #25D366;
+        }
+
+        .link-card.instagram {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+        }
+
+        .link-card.google {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+        }
+
+        .link-card.trabajos {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+        }
+
+        .link-card.instagram:hover,
+        .link-card.google:hover,
+        .link-card.trabajos:hover {
+            border-color: #CBD5E1;
+        }
+
+        .link-card img {
+            width: 45px;
+            height: 45px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .link-card.whatsapp img {
+            border-radius: 8px;
+        }
+
+        .link-card.google img {
+            margin-right: 15px;
+            flex-shrink: 0;
+            vertical-align: middle;
+        }
+
+        .icon-container {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-right: 14px;
+        }
+
+        .icon-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            margin: 0;
+        }
+
+        .arrow-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            opacity: 0.6;
+        }
+
+        .link-card.whatsapp .arrow-icon {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .link-card.instagram .arrow-icon,
+        .link-card.google .arrow-icon,
+        .link-card.trabajos .arrow-icon {
+            color: #94A3B8;
+        }
+
+        .link-card-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .link-card-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .link-card.whatsapp .link-card-title,
+        .link-card.whatsapp .link-card-subtitle {
+            color: white;
+        }
+
+        .link-card.instagram .link-card-title,
+        .link-card.google .link-card-title,
+        .link-card.trabajos .link-card-title {
+            color: #0F172A;
+        }
+
+        .link-card-subtitle {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .link-card.instagram .link-card-subtitle,
+        .link-card.google .link-card-subtitle,
+        .link-card.trabajos .link-card-subtitle {
+            color: #64748B;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #64748B;
+            text-align: center;
+        }
+
+        .footer-container {
+            width: 100%;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        @media (min-width: 900px) {
+            .main-wrapper {
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: center;
+                gap: 40px;
+            }
+
+            .left-column {
+                flex: 1;
+                max-width: 400px;
+            }
+
+            .right-column {
+                flex: 1;
+                max-width: 520px;
+            }
+
+            .footer-container {
+                max-width: 980px;
+            }
+        }
+
+        @media (max-width: 899px) {
+            .logo-container {
+                margin-bottom: 18px;
+            }
+
+            h1 {
+                margin-bottom: 6px;
+            }
+
+            .header {
+                padding: 28px 16px 18px 16px;
+            }
+
+            .right-column {
+                margin-top: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .tag {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+
+            .link-card {
+                padding: 12px 18px;
+            }
+
+            .icon-container {
+                width: 36px;
+                height: 36px;
+                margin-right: 12px;
+            }
+
+            .arrow-icon {
+                width: 18px;
+                height: 18px;
+            }
+
+            .link-card-title {
+                font-size: 15px;
+            }
+
+            .link-card-subtitle {
+                font-size: 12px;
+            }
+
+            .footer {
+                font-size: 12px;
+            }
+        }
+
+        .guardia-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #10B981;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            animation: pulse 2s ease-in-out infinite;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .banner-aviso {
+            display: none;
+            background: linear-gradient(90deg, #1a1a2e 0%, #16213e 100%);
+            color: #FFD700;
+            padding: 16px 20px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .banner-aviso.active {
+            display: block;
+        }
+
+        .banner-icon {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+
+        .whatsapp-mascot-widget {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+        }
+
+        .whatsapp-mascot-link {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .whatsapp-mascot-link:hover {
+            transform: scale(1.08);
+        }
+
+        .whatsapp-mascot-bubble {
+            background: #ffffff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            color: #1e293b;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 20px;
+            padding: 8px 14px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .status-badge.open {
+            background: #10B981;
+            color: white;
+        }
+
+        .phone-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #3f48cc;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .phone-btn:hover {
+            background: #3341a8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(63, 72, 204, 0.3);
+        }
+
+        .brands-section {
+            max-width: 980px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .brands-marquee {
+            display: flex;
+            overflow-x: auto;
+            gap: 24px;
+            padding: 20px 0;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .brands-marquee::-webkit-scrollbar {
+            display: none;
+        }
+
+        .brand-item {
+            flex-shrink: 0;
+            padding: 16px 24px;
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #64748B;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .brand-item:hover {
+            border-color: #3f48cc;
+            color: #3f48cc;
+            transform: translateY(-2px);
+        }
+
+        .calculator-section {
+            max-width: 980px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .calculator-card {
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 16px;
+            padding: 32px 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .calculator-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .calculator-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .calculator-field.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .calculator-field label {
+            color: #0F172A;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .calculator-field input,
+        .calculator-field select {
+            padding: 12px 16px;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: border-color 0.2s ease;
+        }
+
+        .calculator-field input:focus,
+        .calculator-field select:focus {
+            outline: none;
+            border-color: #3f48cc;
+        }
+
+        .calculator-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .calculator-checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .calculator-checkbox label {
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .calculator-result {
+            grid-column: 1 / -1;
+            background: #F8FAFC;
+            border: 2px solid #3f48cc;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .calculator-result h3 {
+            color: #3f48cc;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .calculator-result p {
+            color: #0F172A;
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+
+        .calculator-btn {
+            background: #25D366;
+            color: white;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .calculator-btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+
+        .faq-section {
+            max-width: 980px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .faq-item summary {
+            padding: 20px 24px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            color: #0F172A;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            list-style: none;
+            transition: background 0.2s ease;
+        }
+
+        .faq-item summary:hover {
+            background: #F8FAFC;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: '+';
+            font-size: 24px;
+            font-weight: bold;
+            color: #3f48cc;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item details[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-content {
+            padding: 0 24px 24px 24px;
+            color: #64748B;
+            font-size: 14px;
+            line-height: 1.6;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            background: #ffffff;
+            border: 2px solid #3f48cc;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .dark-mode-toggle svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        body.dark-mode {
+            --bg-primary: #0F172A;
+            --bg-secondary: #1E293B;
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --border-color: #334155;
+        }
+
+        body.dark-mode .header {
+            background: #1E293B;
+        }
+
+        body.dark-mode .header-content h1 {
+            color: #F1F5F9;
+        }
+
+        body.dark-mode .header-content p {
+            color: #94A3B8;
+        }
+
+        body.dark-mode .location-weather {
+            color: #94A3B8;
+        }
+
+        body.dark-mode .tag {
+            background: #334155;
+            color: #F1F5F9;
+        }
+
+        body.dark-mode .link-card {
+            background: #1E293B;
+            border-color: #334155;
+        }
+
+        body.dark-mode .link-card-title {
+            color: #F1F5F9;
+        }
+
+        body.dark-mode .link-card-subtitle {
+            color: #94A3B8;
+        }
+
+        body.dark-mode .right-column {
+            background: #1E293B;
+            border-color: #334155;
+        }
+
+        body.dark-mode .section-title {
+            color: #F1F5F9;
+        }
+
+        body.dark-mode .price-card,
+        body.dark-mode .coverage-card,
+        body.dark-mode .brand-item,
+        body.dark-mode .payment-card,
+        body.dark-mode .calculator-card,
+        body.dark-mode .faq-item {
+            background: #1E293B;
+            border-color: #334155;
+        }
+
+        body.dark-mode .price-service,
+        body.dark-mode .price-value,
+        body.dark-mode .coverage-main,
+        body.dark-mode .calculator-result h3,
+        body.dark-mode .faq-item summary {
+            color: #F1F5F9;
+        }
+
+        body.dark-mode .price-disclaimer,
+        body.dark-mode .coverage-subtitle,
+        body.dark-mode .coverage-note,
+        body.dark-mode .payment-discount,
+        body.dark-mode .calculator-result p,
+        body.dark-mode .faq-content {
+            color: #94A3B8;
+        }
+
+        body.dark-mode .coverage-area {
+            background: #334155;
+            color: #F1F5F9;
+        }
+
+        body.dark-mode .calculator-field label {
+            color: #F1F5F9;
+        }
+
+        body.dark-mode .calculator-field input,
+        body.dark-mode .calculator-field select {
+            background: #334155;
+            border-color: #475569;
+            color: #F1F5F9;
+        }
+
+        body.dark-mode .calculator-result {
+            background: #334155;
+        }
+
+        body.dark-mode .footer {
+            color: #94A3B8;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-form {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .prices-section {
+            max-width: 980px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            color: #0F172A;
+            font-size: 24px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .prices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .price-card {
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: #CBD5E1;
+        }
+
+        .price-service {
+            color: #0F172A;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .price-value {
+            color: #3f48cc;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .prices-disclaimer {
+            text-align: center;
+            color: #64748B;
+            font-size: 12px;
+            margin-top: 16px;
+            font-style: italic;
+        }
+
+        .coverage-section {
+            max-width: 980px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .coverage-card {
+            background: linear-gradient(135deg, #3f48cc 0%, #5b65e8 100%);
+            border-radius: 16px;
+            padding: 32px 24px;
+            color: white;
+            text-align: center;
+        }
+
+        .coverage-main {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .coverage-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .coverage-areas {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .coverage-area {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .coverage-note {
+            font-size: 13px;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .payment-section {
+            max-width: 980px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .payment-card {
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .payment-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: #CBD5E1;
+        }
+
+        .payment-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .payment-name {
+            color: #0F172A;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .payment-discount {
+            color: #10B981;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .whatsapp-mascot-avatar {
+            width: 64px;
+            height: 64px;
+            background: #ffffff;
+            border: 3px solid #25D366;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+            border-radius: 50%;
+            overflow: visible;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .mascot-face {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .whatsapp-badge-icon {
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            background: #25D366;
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 500px) {
+            .whatsapp-mascot-bubble {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner-aviso" id="bannerAviso">
+        <span class="banner-icon">📢</span>
+        <span id="bannerText"></span>
+    </div>
+
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()" aria-label="Cambiar modo oscuro/claro">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3a1 1 0 0 0 0 2c5.523 0 10 4.477 10 10a1 1 0 0 0 2 0C24 6.477 18.523 1 12 3zM12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 2a9 9 0 1 0 0 18 9 9 0 0 0 0-18z" fill="#3f48cc"/>
+        </svg>
+    </button>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="source/logo.png" alt="Tecno Frío Logo" class="logo">
+            </div>
+
+            <h1>Tecno Frío</h1>
+            <p style="font-size: 15px; color: #E0E7FF; font-weight: 500; margin-bottom: 4px;">Servicio Técnico en Refrigeración</p>
+            <p class="location-weather" style="color: #E0E7FF; font-size: 0.95rem; margin-top: 6px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap;">
+                <span>📍 Federal, Entre Ríos</span>
+                <span>•</span>
+                <span id="weather-temp">Cargando clima...</span>
+                <span>•</span>
+                <span id="live-clock">--:-- hs</span>
+                <span id="guardiaBadge" style="display: none;">• <a href="https://wa.me/5493454480828" class="guardia-badge">🟢 <span id="guardiaText">Atendiendo urgencias ahora</span></a></span>
+            </p>
+
+            <div class="tags">
+                <span class="tag">❄️ Aire Acondicionado</span>
+                <span class="tag">🔧 Heladeras Comerciales y Familiares</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+        <div class="left-column">
+            <div class="links-container">
+                <a href="https://wa.me/5493454480828" class="link-card whatsapp" target="_blank">
+                    <div class="icon-container">
+                        <img src="https://play-lh.googleusercontent.com/Gqxk4T0uZsDwFp07DE-508hkyvcNmgFuRwPiwTEfF7D7OzGv1FdHDzEyMxNsSBZLOJlGpe3ULvVM2RgrRAlBqA=w240-h480-rw" alt="WhatsApp" style="border-radius: 8px;">
+                    </div>
+                    <div class="link-card-content">
+                        <div class="link-card-title">Chatear por WhatsApp</div>
+                        <div class="link-card-subtitle">Presupuestos y consultas inmediatas</div>
+                    </div>
+                    <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+
+                <a href="https://www.instagram.com/tecnofriofederal" class="link-card instagram" target="_blank">
+                    <div class="icon-container">
+                        <img src="source/Instagram_icon.png" alt="Instagram">
+                    </div>
+                    <div class="link-card-content">
+                        <div class="link-card-title">Seguinos en Instagram</div>
+                        <div class="link-card-subtitle">Novedades y trabajos</div>
+                    </div>
+                    <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+
+                <a href="https://g.page/r/CasemWSsoOOBEBM/review" class="link-card google" target="_blank">
+                    <div class="icon-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Google_Maps_icon_%282020%29.svg" alt="Google Maps">
+                    </div>
+                    <div class="link-card-content">
+                        <div class="link-card-title">Dejanos tu reseña en Google</div>
+                        <div class="link-card-subtitle">Tu opinión nos ayuda a crecer</div>
+                    </div>
+                    <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+
+                <a href="trabajos.html" class="link-card trabajos">
+                    <div class="icon-container">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23 19C23 19.5304 22.7893 20.0391 22.4142 20.4142C22.0391 20.7893 21.5304 21 21 21H3C2.46957 21 1.96086 20.7893 1.58579 20.4142C1.21071 20.0391 1 19.5304 1 19V8C1 7.46957 1.21071 6.96086 1.58579 6.58579C1.96086 6.21071 2.46957 6 3 6H7L9 3H15L17 6H21C21.5304 6 22.0391 6.21071 22.4142 6.58579C22.7893 6.96086 23 7.46957 23 8V19Z" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="12" cy="13" r="4" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="link-card-content">
+                        <div class="link-card-title">Ver trabajos realizados</div>
+                        <div class="link-card-subtitle">Galería de instalaciones y reparaciones</div>
+                    </div>
+                    <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+
+                <a href="tel:+5493454480828" class="link-card" style="background: #3f48cc; color: white;">
+                    <div class="icon-container">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 16.92v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M15 7a2 2 0 0 1 2 2h4a2 2 0 0 1 2-2h1a2 2 0 0 1 2-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="link-card-content">
+                        <div class="link-card-title">Llamar directo</div>
+                        <div class="link-card-subtitle">📞 Llamada telefónica</div>
+                    </div>
+                    <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="right-column">
+        </div>
+    </div>
+
+    <!-- Precios de Referencia -->
+    <div class="prices-section">
+        <h2 class="section-title">Precios de Referencia</h2>
+        <div class="prices-grid" id="pricesGrid">
+            <div class="price-card">
+                <div class="price-service">Cargando precios...</div>
+            </div>
+        </div>
+        <p class="prices-disclaimer">* Valores sujetos a revisión del equipo o materiales adicionales</p>
+    </div>
+
+    <!-- Calculadora de Frigorías -->
+    <div class="calculator-section">
+        <h2 class="section-title">Calculadora de Frigorías</h2>
+        <div class="calculator-card">
+            <div class="calculator-form">
+                <div class="calculator-field">
+                    <label for="roomLength">Largo del ambiente (m)</label>
+                    <input type="number" id="roomLength" placeholder="Ej: 4" min="1" step="0.5" />
+                </div>
+                <div class="calculator-field">
+                    <label for="roomWidth">Ancho del ambiente (m)</label>
+                    <input type="number" id="roomWidth" placeholder="Ej: 3" min="1" step="0.5" />
+                </div>
+                <div class="calculator-field full-width">
+                    <label>Condiciones térmicas adicionales:</label>
+                    <div class="calculator-checkbox">
+                        <input type="checkbox" id="roofSun" />
+                        <label for="roofSun">Techo de chapa o sol directo de la tarde</label>
+                    </div>
+                    <div class="calculator-checkbox">
+                        <input type="checkbox" id="largeWindow" />
+                        <label for="largeWindow">Paredes vidriadas o ventanal grande</label>
+                    </div>
+                </div>
+                <div class="calculator-field">
+                    <label for="peopleCount">Cantidad de personas</label>
+                    <input type="number" id="peopleCount" placeholder="Ej: 2" min="1" value="2" />
+                </div>
+                <div class="calculator-field">
+                    <label for="appliancesCount">Electrodomésticos en uso</label>
+                    <input type="number" id="appliancesCount" placeholder="Ej: 1" min="0" value="0" />
+                </div>
+                <div class="calculator-result full-width" id="calculatorResult" style="display: none;">
+                    <h3 id="resultTitle">Resultado</h3>
+                    <p id="resultText"></p>
+                    <a id="whatsappBtn" class="calculator-btn" href="#" target="_blank">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+                        </svg>
+                        Consultar instalación para este equipo
+                    </a>
+                </div>
+            </div>
+            <button class="calculator-btn" onclick="calculateBTUs()" style="margin-top: 20px; width: 100%; justify-content: center; background: #3f48cc;">
+                Calcular frigorías
+            </button>
+        </div>
+    </div>
+
+    <!-- Zona de Cobertura -->
+    <div class="coverage-section">
+        <div class="coverage-card">
+            <div class="coverage-main">📍 Zona de Cobertura</div>
+            <div class="coverage-subtitle">Servicio técnico de refrigeración en</div>
+            <div class="coverage-areas">
+                <div class="coverage-area">🏘️ Federal</div>
+                <div class="coverage-area">🏘️ Conscripto Bernardi</div>
+                <div class="coverage-area">🏘️ Sauce de Luna</div>
+                <div class="coverage-area">🌾 Zonas Rurales</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Marcas Atendidas -->
+    <div class="brands-section">
+        <h2 class="section-title">Especialistas en primeras marcas</h2>
+        <div class="brands-marquee">
+            <div class="brand-item">BGH</div>
+            <div class="brand-item">Surrey</div>
+            <div class="brand-item">Philco</div>
+            <div class="brand-item">Samsung</div>
+            <div class="brand-item">LG</div>
+            <div class="brand-item">Midea</div>
+            <div class="brand-item">Whirlpool</div>
+            <div class="brand-item">Gafa</div>
+            <div class="brand-item">Electrolux</div>
+        </div>
+    </div>
+
+    <!-- Lo que dicen nuestros clientes -->
+    <div class="payment-section">
+        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+        <div class="right-column" style="background: #ffffff; border: 1px solid #E2E8F0; border-radius: 16px; padding: 24px; min-height: 300px;">
+            <div class="elfsight-app-370d3330-44a8-43d9-b7f5-cbba6921579c" data-elfsight-app-lazy></div>
+        </div>
+    </div>
+
+    <!-- Medios de Pago -->
+    <div class="payment-section">
+        <h2 class="section-title">Medios de Pago</h2>
+        <div class="payment-grid">
+            <div class="payment-card">
+                <div class="payment-icon">💵</div>
+                <div class="payment-name">Efectivo</div>
+                <div class="payment-discount">Precio especial</div>
+            </div>
+            <div class="payment-card">
+                <div class="payment-icon">🏦</div>
+                <div class="payment-name">Transferencia</div>
+                <div class="payment-discount">Alias disponible</div>
+            </div>
+            <div class="payment-card">
+                <div class="payment-icon">💳</div>
+                <div class="payment-name">Mercado Pago</div>
+                <div class="payment-discount">QR y link</div>
+            </div>
+            <div class="payment-card">
+                <div class="payment-icon">💳</div>
+                <div class="payment-name">Tarjetas</div>
+                <div class="payment-discount">Débito y Crédito</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preguntas Frecuentes (FAQ) -->
+    <div class="faq-section">
+        <h2 class="section-title">Preguntas Frecuentes</h2>
+
+        <div class="faq-item">
+            <details>
+                <summary>¿Qué incluye una instalación estándar?</summary>
+                <div class="faq-content">
+                    Colocación de unidad interior y exterior sobre ménsulas reforzadas, cañería de cobre reglamentaria de hasta 3 metros con aislación individual, orificio y sellado pasamuros, presurización con nitrógeno y vacío obligatorio con bomba de doble etapa.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>¿Por qué es obligatorio hacer vacío con bomba y no con barrido de gas?</summary>
+                <div class="faq-content">
+                    El barrido no quita la humedad ni el aire del circuito. Esa humedad degrada el aceite sintético, acidifica el circuito y quema el compresor en poco tiempo, perdiendo la garantía de fábrica.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>¿Otorgan garantía por escrito sobre los trabajos?</summary>
+                <div class="faq-content">
+                    Sí, todas las instalaciones y reparaciones cuentan con garantía de servicio tanto en mano de obra como en repuestos utilizados.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>¿Los presupuestos a domicilio tienen costo?</summary>
+                <div class="faq-content">
+                    Las visitas de diagnóstico técnico en Federal y zonas de cobertura tienen un costo mínimo de traslado/inspección que se bonifica si se realiza el trabajo.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-item">
+            <details>
+                <summary>¿Qué medios de pago aceptan?</summary>
+                <div class="faq-content">
+                    Efectivo, transferencia bancaria (Alias/CBU en un toque) y pagos electrónicos o tarjetas.
+                </div>
+            </details>
+        </div>
+    </div>
+
+    <div class="footer-container">
+        <p class="footer">🕒 Horario: Lun a Sáb de 8:00 a 20:00 hs</p>
+    </div>
+
+    <script>
+        // Clock update - Argentina time
+        function updateClock() {
+            const now = new Date();
+            const options = {
+                timeZone: 'America/Argentina/Cordoba',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            };
+            const timeString = now.toLocaleTimeString('es-AR', options);
+            document.getElementById('live-clock').textContent = timeString + ' hs';
+        }
+
+        // Weather update - Federal, Entre Ríos
+        async function updateWeather() {
+            const weatherElement = document.getElementById('weather-temp');
+            
+            try {
+                const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=-30.9547&longitude=-58.7833&current_weather=true');
+                const data = await response.json();
+                
+                if (data.current_weather) {
+                    const temp = Math.round(data.current_weather.temperature);
+                    const weatherCode = data.current_weather.weathercode;
+                    
+                    let weatherEmoji = '☀️';
+                    
+                    // Weather code to emoji mapping
+                    if (weatherCode >= 0 && weatherCode <= 3) {
+                        weatherEmoji = '☀️'; // Clear
+                    } else if (weatherCode >= 45 && weatherCode <= 48) {
+                        weatherEmoji = '🌫️'; // Fog
+                    } else if (weatherCode >= 51 && weatherCode <= 67) {
+                        weatherEmoji = '🌧️'; // Rain
+                    } else if (weatherCode >= 71 && weatherCode <= 77) {
+                        weatherEmoji = '❄️'; // Snow
+                    } else if (weatherCode >= 80 && weatherCode <= 82) {
+                        weatherEmoji = '⛈️'; // Thunderstorm
+                    } else if (weatherCode >= 95) {
+                        weatherEmoji = '⛈️'; // Thunderstorm
+                    } else {
+                        weatherEmoji = '⛅'; // Cloudy
+                    }
+                    
+                    weatherElement.textContent = `${weatherEmoji} ${temp}°C`;
+                }
+            } catch (error) {
+                console.error('Error fetching weather:', error);
+                weatherElement.textContent = ''; // Keep only location on error
+            }
+        }
+
+        // Initialize
+        updateClock();
+        setInterval(updateClock, 1000);
+        updateWeather();
+
+        // Load configuration from Supabase
+        async function loadConfig() {
+            try {
+                const script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+                script.onload = async () => {
+                    const SUPABASE_URL = 'https://oseyfgdhdfsbqmfyjnwr.supabase.co';
+                    const SUPABASE_KEY = 'sb_publishable_ApxmknN4MSf9XczzG5Asjw_cuKZwpyK';
+                    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+                    // Buscar configuración de guardia
+                    const { data: guardiaData, error: guardiaError } = await supabase
+                        .from('configuracion')
+                        .select('*')
+                        .eq('clave', 'guardia')
+                        .single();
+
+                    // Buscar configuración de banner
+                    const { data: bannerData, error: bannerError } = await supabase
+                        .from('configuracion')
+                        .select('*')
+                        .eq('clave', 'banner_aviso')
+                        .single();
+
+                    if (guardiaError && guardiaError.code !== 'PGRST116') {
+                        console.error('Error loading guardia config:', guardiaError);
+                    }
+
+                    if (bannerError && bannerError.code !== 'PGRST116') {
+                        console.error('Error loading banner config:', bannerError);
+                    }
+
+                    // Show/hide guardia badge
+                    const guardiaBadge = document.getElementById('guardiaBadge');
+                    const guardiaText = document.getElementById('guardiaText');
+                    if (guardiaData && guardiaData.activo) {
+                        guardiaBadge.style.display = 'inline';
+                        guardiaText.textContent = guardiaData.valor || 'Atendiendo urgencias ahora';
+                    } else {
+                        guardiaBadge.style.display = 'none';
+                    }
+
+                    // Show/hide banner aviso
+                    const bannerAviso = document.getElementById('bannerAviso');
+                    const bannerText = document.getElementById('bannerText');
+                    if (bannerData && bannerData.activo && bannerData.valor) {
+                        bannerText.textContent = bannerData.valor;
+                        bannerAviso.classList.add('active');
+                        document.body.classList.add('with-banner');
+                    } else {
+                        bannerAviso.classList.remove('active');
+                        document.body.classList.remove('with-banner');
+                    }
+                };
+                document.head.appendChild(script);
+            } catch (error) {
+                console.error('Error loading Supabase:', error);
+            }
+        }
+
+        // Load prices from Supabase
+        async function loadPrices() {
+            try {
+                const script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+                script.onload = async () => {
+                    const SUPABASE_URL = 'https://oseyfgdhdfsbqmfyjnwr.supabase.co';
+                    const SUPABASE_KEY = 'sb_publishable_ApxmknN4MSf9XczzG5Asjw_cuKZwpyK';
+                    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+                    const { data, error } = await supabase
+                        .from('precios')
+                        .select('*')
+                        .order('orden', { ascending: true });
+
+                    if (error) {
+                        console.error('Error loading prices:', error);
+                        return;
+                    }
+
+                    const pricesGrid = document.getElementById('pricesGrid');
+                    pricesGrid.innerHTML = '';
+
+                    if (data && data.length > 0) {
+                        data.forEach(price => {
+                            const card = document.createElement('div');
+                            card.className = 'price-card';
+                            card.innerHTML = `
+                                <div class="price-service">${price.servicio}</div>
+                                <div class="price-value">${price.precio}</div>
+                            `;
+                            pricesGrid.appendChild(card);
+                        });
+                    } else {
+                        pricesGrid.innerHTML = '<div class="price-card"><div class="price-service">No hay precios disponibles</div></div>';
+                    }
+                };
+                document.head.appendChild(script);
+            } catch (error) {
+                console.error('Error loading Supabase:', error);
+            }
+        }
+
+        loadConfig();
+        loadPrices();
+
+        // Calculadora de Frigorías
+        function calculateBTUs() {
+            const length = parseFloat(document.getElementById('roomLength').value) || 0;
+            const width = parseFloat(document.getElementById('roomWidth').value) || 0;
+            const roofSun = document.getElementById('roofSun').checked;
+            const largeWindow = document.getElementById('largeWindow').checked;
+            const people = parseInt(document.getElementById('peopleCount').value) || 2;
+            const appliances = parseInt(document.getElementById('appliancesCount').value) || 0;
+
+            if (length <= 0 || width <= 0) {
+                alert('Por favor ingresá las dimensiones del ambiente');
+                return;
+            }
+
+            const area = length * width;
+            let baseBTUs = area * 50; // 50 frigorías por m²
+
+            // Sumar por condiciones térmicas
+            if (roofSun) baseBTUs *= 1.25; // +25% por techo de chapa/sol directo
+            if (largeWindow) baseBTUs *= 1.15; // +15% por ventana grande
+
+            // Sumar por personas extra (más de 2)
+            if (people > 2) {
+                baseBTUs += (people - 2) * 150;
+            }
+
+            // Sumar por electrodomésticos
+            baseBTUs += appliances * 100;
+
+            // Calcular watts aproximados (1 frigoría ≈ 0.1163 watts para refrigeración)
+            const watts = Math.round(baseBTUs * 0.1163);
+
+            // Redondear a rangos estándar
+            const standardBTUs = Math.round(baseBTUs / 100) * 100;
+            const rangeMin = standardBTUs - 250;
+            const rangeMax = standardBTUs + 250;
+
+            // Mostrar resultado
+            const resultDiv = document.getElementById('calculatorResult');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultText = document.getElementById('resultText');
+            const whatsappBtn = document.getElementById('whatsappBtn');
+
+            resultDiv.style.display = 'block';
+            resultTitle.textContent = 'Resultado';
+            resultText.textContent = `Recomendado: ${rangeMin} a ${rangeMax} Frigorías / ~${watts} W`;
+
+            // Configurar botón de WhatsApp
+            const message = `Hola Tecno Frío, calculé en la web que necesito un equipo de ${rangeMin} a ${rangeMax} frigorías para un ambiente de ${length}x${width}m. Quisiera consultar modelos disponibles e instalación.`;
+            whatsappBtn.href = `https://wa.me/5493454480828?text=${encodeURIComponent(message)}`;
+        }
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            const body = document.body;
+            const themeIcon = document.getElementById('themeIcon');
+
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+                themeIcon.innerHTML = '<path d="M12 3a1 1 0 0 0 0 2c5.523 0 10 4.477 10 10a1 1 0 0 0 2 0C24 6.477 18.523 1 12 3zM12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 2a9 9 0 1 0 0 18 9 9 0 0 0 0-18z" fill="#3f48cc"/>';
+            } else {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="#F59E0B"/>';
+            }
+        }
+
+        // Load theme preference
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.getElementById('themeIcon');
+
+            // Only apply dark mode if explicitly saved in localStorage
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="#F59E0B"/>';
+            } else {
+                // Default to light mode
+                themeIcon.innerHTML = '<path d="M12 3a1 1 0 0 0 0 2c5.523 0 10 4.477 10 10a1 1 0 0 0 2 0C24 6.477 18.523 1 12 3zM12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 2a9 9 0 1 0 0 18 9 9 0 0 0 0-18z" fill="#3f48cc"/>';
+            }
+        }
+
+        loadTheme();
+    </script>
+
+    <script src="https://elfsightcdn.com/platform.js" defer></script>
+
+    <div class="whatsapp-mascot-widget">
+        <a href="https://wa.me/5493454480828?text=Hola%20Tecno%20Fr%C3%ADo,%20necesito%20hacer%20una%20consulta%20por%20un%20servicio."
+           target="_blank"
+           rel="noopener noreferrer"
+           class="whatsapp-mascot-link"
+           aria-label="Contactar por WhatsApp">
+            <div class="whatsapp-mascot-bubble">
+                <span>¿Necesitás ayuda? Escribime</span>
+            </div>
+            <div class="whatsapp-mascot-avatar">
+                <img src="source/perro-soporte.png" alt="Soporte Tecno Frío" class="mascot-face" />
+                <div class="whatsapp-badge-icon">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+                    </svg>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <script src="https://elfsightcdn.com/platform.js" async></script>
+</body>
+</html>

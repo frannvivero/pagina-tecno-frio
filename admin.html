@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Tecno Frío</title>
+    <link rel="icon" type="image/png" href="source/logo.png">
+    <meta name="theme-color" content="#3f48cc">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(180deg, #F1F5F9 0%, #FFFFFF 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            color: #3f48cc;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #64748B;
+            font-size: 14px;
+        }
+
+        .login-section {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #0F172A;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        input[type="password"],
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: border-color 0.2s ease;
+        }
+
+        input[type="password"]:focus,
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #3f48cc;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #3f48cc;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #3341a8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(63, 72, 204, 0.3);
+        }
+
+        .btn-primary:disabled {
+            background: #94A3B8;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .upload-section {
+            display: none;
+        }
+
+        .upload-section.active {
+            display: block;
+        }
+
+        .document-section {
+            margin-top: 32px;
+        }
+
+        .document-section details {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .document-section summary {
+            padding: 20px 24px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 16px;
+            color: #0F172A;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            list-style: none;
+            transition: background 0.2s ease;
+        }
+
+        .document-section summary:hover {
+            background: #F8FAFC;
+        }
+
+        .document-section summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .document-section summary::after {
+            content: '▼';
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .document-section details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .document-content {
+            padding: 0 24px 24px 24px;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        .document-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .document-form label {
+            color: #0F172A;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .document-form input,
+        .document-form textarea,
+        .document-form select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .document-form textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .document-form .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .document-btn {
+            background: #3f48cc;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .document-btn:hover {
+            background: #3341a8;
+            transform: translateY(-2px);
+        }
+
+        .qr-preview {
+            margin-top: 16px;
+            padding: 24px;
+            background: #ffffff;
+            border: 2px dashed #E2E8F0;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .qr-preview canvas {
+            margin: 0 auto;
+        }
+
+        .upload-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .file-input-wrapper {
+            border: 2px dashed #E2E8F0;
+            border-radius: 12px;
+            padding: 32px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 20px;
+        }
+
+        .file-input-wrapper:hover {
+            border-color: #3f48cc;
+            background: #F8FAFC;
+        }
+
+        .file-input-wrapper input[type="file"] {
+            display: none;
+        }
+
+        .upload-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .upload-text {
+            color: #64748B;
+            font-size: 14px;
+        }
+
+        .preview-container {
+            display: none;
+            margin-bottom: 20px;
+        }
+
+        .preview-container.active {
+            display: block;
+        }
+
+        .preview-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .remove-preview {
+            color: #EF4444;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid #E2E8F0;
+            border-top-color: #3f48cc;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #64748B;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .success-message {
+            display: none;
+            background: #10B981;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .success-message.active {
+            display: block;
+        }
+
+        .error-message {
+            display: none;
+            background: #EF4444;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .error-message.active {
+            display: block;
+        }
+
+        .logout-btn {
+            background: transparent;
+            color: #64748B;
+            border: 1px solid #E2E8F0;
+            margin-top: 16px;
+        }
+
+        .logout-btn:hover {
+            background: #F1F5F9;
+            color: #0F172A;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .work-item {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .work-thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .work-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .work-title {
+            color: #0F172A;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+            word-break: break-word;
+        }
+
+        .work-date {
+            color: #64748B;
+            font-size: 12px;
+        }
+
+        .work-actions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .action-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .edit-btn {
+            background: #3f48cc;
+            color: white;
+        }
+
+        .edit-btn:hover {
+            background: #3341a8;
+        }
+
+        .delete-btn {
+            background: #EF4444;
+            color: white;
+        }
+
+        .delete-btn:hover {
+            background: #DC2626;
+        }
+
+        .works-accordion {
+            margin-top: 32px;
+        }
+
+        .config-section h2 {
+            color: #0F172A;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .config-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .config-item {
+            margin-bottom: 20px;
+        }
+
+        .config-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .config-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .config-label span {
+            color: #0F172A;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #CBD5E1;
+            transition: 0.3s;
+            border-radius: 26px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: #3f48cc;
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+
+        .config-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            font-size: 14px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 80px;
+            transition: border-color 0.2s ease;
+        }
+
+        .config-textarea:focus {
+            outline: none;
+            border-color: #3f48cc;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 32px;
+            color: #64748B;
+            font-size: 14px;
+        }
+
+        .works-accordion {
+            margin-top: 32px;
+        }
+
+        .works-accordion details {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .works-accordion summary {
+            padding: 20px 24px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 16px;
+            color: #0F172A;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            list-style: none;
+            transition: background 0.2s ease;
+        }
+
+        .works-accordion summary:hover {
+            background: #F8FAFC;
+        }
+
+        .works-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .works-accordion summary::after {
+            content: '▼';
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .works-accordion details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .works-count {
+            background: #3f48cc;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .works-accordion-content {
+            padding: 0 24px 24px 24px;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        .prices-admin-section {
+            margin-top: 32px;
+        }
+
+        .prices-admin-section h2 {
+            color: #0F172A;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .price-admin-item {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .price-admin-info {
+            flex: 1;
+        }
+
+        .price-admin-service {
+            color: #0F172A;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .price-admin-order {
+            color: #64748B;
+            font-size: 12px;
+        }
+
+        .price-admin-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .price-input {
+            width: 120px;
+            padding: 8px 12px;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .add-price-card {
+            background: #3f48cc;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 16px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .add-price-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .add-price-btn {
+            background: white;
+            color: #3f48cc;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .add-price-btn:hover {
+            background: #F1F5F9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="source/logo.png" alt="Tecno Frío Logo" class="logo">
+            <h1>Panel de Administración</h1>
+            <p class="subtitle">Subí fotos de tus trabajos</p>
+        </div>
+
+        <!-- Login Section -->
+        <div class="login-section" id="loginSection">
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" placeholder="Ingresá tu contraseña" />
+            </div>
+            <button class="btn btn-primary" onclick="login()">Ingresar</button>
+        </div>
+
+        <!-- Upload Section -->
+        <div class="upload-section" id="uploadSection">
+            <div class="success-message" id="successMessage">
+                ✓ Trabajo subido exitosamente
+            </div>
+            <div class="error-message" id="errorMessage"></div>
+
+            <div class="upload-card">
+                <div class="file-input-wrapper" onclick="document.getElementById('fileInput').click()">
+                    <div class="upload-icon">📷</div>
+                    <p class="upload-text">Tocá para seleccionar una foto</p>
+                    <input type="file" id="fileInput" accept="image/*" onchange="handleFileSelect(event)" />
+                </div>
+
+                <div class="preview-container" id="previewContainer">
+                    <img id="previewImage" class="preview-image" alt="Vista previa" />
+                    <p class="remove-preview" onclick="removePreview()">✕ Cambiar foto</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Título del trabajo</label>
+                    <input type="text" id="title" placeholder="Ej: Instalación split 3000 frigorías" />
+                </div>
+
+                <button class="btn btn-primary" id="uploadBtn" onclick="uploadWork()" disabled>
+                    Subir trabajo
+                </button>
+
+                <button class="btn logout-btn" onclick="logout()">
+                    Cerrar sesión
+                </button>
+            </div>
+
+            <!-- Works List (Accordion) -->
+            <div class="works-accordion">
+                <details>
+                    <summary>
+                        Trabajos cargados
+                        <span class="works-count" id="worksCount">0</span>
+                    </summary>
+                    <div class="works-accordion-content">
+                        <div id="worksList"></div>
+                    </div>
+                </details>
+            </div>
+
+            <!-- Config Section -->
+            <div class="config-section">
+                <h2>Configuración del sitio</h2>
+
+                <!-- Bloque A: Estado de Guardia -->
+                <div class="config-card" style="margin-bottom: 20px;">
+                    <h3 style="color: #0F172A; font-size: 16px; font-weight: 700; margin-bottom: 16px;">Estado de Guardia / Urgencias</h3>
+                    <div class="config-item">
+                        <div class="config-label">
+                            <span>Activar estado de guardia</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="guardiaToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="guardiaText">Texto del estado</label>
+                        <input type="text" id="guardiaText" placeholder="Ej: Atendiendo urgencias ahora" />
+                    </div>
+                </div>
+
+                <!-- Bloque B: Banner Superior -->
+                <div class="config-card">
+                    <h3 style="color: #0F172A; font-size: 16px; font-weight: 700; margin-bottom: 16px;">Banner Superior / Aviso Promocional</h3>
+                    <div class="config-item">
+                        <div class="config-label">
+                            <span>Mostrar aviso superior</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="bannerToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="bannerText">Mensaje del aviso</label>
+                        <textarea class="config-textarea" id="bannerText" placeholder="Ej: ¡Promoción de temporada en cargas de gas!"></textarea>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="saveConfig()" style="margin-top: 20px;">
+                    Guardar configuración
+                </button>
+            </div>
+
+            <!-- Precios Admin Section -->
+            <div class="prices-admin-section">
+                <h2>Precios de Referencia</h2>
+                <div id="pricesAdminList"></div>
+
+                <div class="add-price-card">
+                    <input type="text" id="newPriceService" class="add-price-input" placeholder="Nombre del servicio">
+                    <input type="text" id="newPriceValue" class="add-price-input" placeholder="Precio (ej: $5.000)">
+                    <button class="add-price-btn" onclick="addPrice()">Agregar</button>
+                </div>
+            </div>
+
+            <!-- Documentos Section -->
+            <div class="document-section">
+                <h2 style="color: #0F172A; font-size: 18px; font-weight: 700; margin-bottom: 16px;">Generador de Documentos</h2>
+
+                <!-- Generador de Presupuestos -->
+                <details>
+                    <summary>Generador de Presupuestos PDF</summary>
+                    <div class="document-content">
+                        <div class="document-form">
+                            <label>Nombre del cliente / Comercio</label>
+                            <input type="text" id="budgetClient" placeholder="Nombre completo" />
+
+                            <label>Teléfono / Dirección</label>
+                            <input type="text" id="budgetContact" placeholder="Teléfono y dirección" />
+
+                            <label>Equipo</label>
+                            <input type="text" id="budgetEquipment" placeholder="Ej: Split 3000F, Heladera exhibidora" />
+
+                            <label>Descripción de tareas y repuestos</label>
+                            <textarea id="budgetDescription" placeholder="Detalle de los trabajos a realizar y materiales..."></textarea>
+
+                            <div class="row">
+                                <div>
+                                    <label>Mano de obra ($)</label>
+                                    <input type="number" id="budgetLabor" placeholder="0" />
+                                </div>
+                                <div>
+                                    <label>Materiales ($)</label>
+                                    <input type="number" id="budgetMaterials" placeholder="0" />
+                                </div>
+                            </div>
+
+                            <label>Validez del presupuesto</label>
+                            <select id="budgetValidity">
+                                <option value="7">7 días</option>
+                                <option value="15">15 días</option>
+                                <option value="30">30 días</option>
+                            </select>
+
+                            <button class="document-btn" onclick="generateBudgetPDF()">Descargar Presupuesto en PDF</button>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Generador de Recibo -->
+                <details>
+                    <summary>Emitir Recibo / Comprobante de Servicio</summary>
+                    <div class="document-content">
+                        <div class="document-form">
+                            <label>Nombre del cliente</label>
+                            <input type="text" id="receiptClient" placeholder="Nombre completo" />
+
+                            <label>Concepto / Reparación realizada</label>
+                            <textarea id="receiptConcept" placeholder="Descripción del servicio..."></textarea>
+
+                            <label>Garantía otorgada</label>
+                            <select id="receiptWarranty">
+                                <option value="3 meses">3 meses</option>
+                                <option value="6 meses">6 meses</option>
+                                <option value="12 meses">12 meses</option>
+                            </select>
+
+                            <div class="row">
+                                <div>
+                                    <label>Monto cobrado ($)</label>
+                                    <input type="number" id="receiptAmount" placeholder="0" />
+                                </div>
+                                <div>
+                                    <label>Medio de pago</label>
+                                    <select id="receiptPayment">
+                                        <option value="Efectivo">Efectivo</option>
+                                        <option value="Transferencia">Transferencia</option>
+                                        <option value="Tarjeta">Tarjeta</option>
+                                        <option value="Mercado Pago">Mercado Pago</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button class="document-btn" onclick="generateReceiptPDF()">Generar Recibo PDF</button>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Generador de Sticker QR -->
+                <details>
+                    <summary>Generar Sticker con Código QR</summary>
+                    <div class="document-content">
+                        <div class="document-form">
+                            <p style="color: #64748B; font-size: 14px; margin-bottom: 16px;">
+                                Genera un sticker de 10x7 cm con el código QR que apunta a la web de Tecno Frío.
+                            </p>
+
+                            <div class="qr-preview" id="qrPreview">
+                                <div id="qrcode"></div>
+                            </div>
+
+                            <button class="document-btn" onclick="generateQRSticker()">Generar Sticker</button>
+                            <button class="document-btn" onclick="printQRSticker()" style="background: #10B981; margin-top: 8px;">Imprimir Sticker</button>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p class="loading-text">Subiendo imagen...</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        const SUPABASE_URL = 'https://oseyfgdhdfsbqmfyjnwr.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_ApxmknN4MSf9XczzG5Asjw_cuKZwpyK';
+        const PASSWORD = 'tecnofrio2025';
+
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        let selectedFile = null;
+
+        function login() {
+            const password = document.getElementById('password').value;
+            if (password === PASSWORD) {
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('uploadSection').classList.add('active');
+            } else {
+                alert('Contraseña incorrecta');
+            }
+        }
+
+        function logout() {
+            document.getElementById('uploadSection').classList.remove('active');
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('password').value = '';
+            resetForm();
+        }
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                selectedFile = file;
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('previewImage').src = e.target.result;
+                    document.getElementById('previewContainer').classList.add('active');
+                    document.getElementById('uploadBtn').disabled = false;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function removePreview() {
+            selectedFile = null;
+            document.getElementById('fileInput').value = '';
+            document.getElementById('previewContainer').classList.remove('active');
+            document.getElementById('uploadBtn').disabled = true;
+        }
+
+        function resetForm() {
+            selectedFile = null;
+            document.getElementById('fileInput').value = '';
+            document.getElementById('title').value = '';
+            document.getElementById('previewContainer').classList.remove('active');
+            document.getElementById('uploadBtn').disabled = true;
+            document.getElementById('successMessage').classList.remove('active');
+            document.getElementById('errorMessage').classList.remove('active');
+        }
+
+        // Compresión de imágenes usando canvas
+        async function compressImage(file, maxWidth = 1600, quality = 0.75) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.src = event.target.result;
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        let width = img.width;
+                        let height = img.height;
+
+                        if (width > maxWidth) {
+                            height = (height * maxWidth) / width;
+                            width = maxWidth;
+                        }
+
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        canvas.toBlob(
+                            (blob) => {
+                                if (blob) {
+                                    resolve(new File([blob], file.name, { type: 'image/jpeg' }));
+                                } else {
+                                    reject(new Error('Error al comprimir imagen'));
+                                }
+                            },
+                            'image/jpeg',
+                            quality
+                        );
+                    };
+                    img.onerror = reject;
+                };
+                reader.onerror = reject;
+            });
+        }
+
+        async function uploadWork() {
+            const title = document.getElementById('title').value.trim();
+
+            if (!selectedFile) {
+                alert('Por favor seleccioná una foto');
+                return;
+            }
+
+            if (!title) {
+                alert('Por favor ingresá un título para el trabajo');
+                return;
+            }
+
+            document.getElementById('loadingOverlay').classList.add('active');
+
+            try {
+                // Comprimir imagen
+                const compressedFile = await compressImage(selectedFile);
+
+                // Generar nombre único
+                const timestamp = Date.now();
+                const fileExt = 'jpg';
+                const fileName = `${timestamp}.${fileExt}`;
+
+                // Subir imagen a Supabase Storage
+                const { data: uploadData, error: uploadError } = await supabaseClient
+                    .storage
+                    .from('trabajos')
+                    .upload(fileName, compressedFile);
+
+                if (uploadError) throw uploadError;
+
+                // Obtener URL pública
+                const { data: { publicUrl } } = supabaseClient
+                    .storage
+                    .from('trabajos')
+                    .getPublicUrl(fileName);
+
+                // Insertar registro en la tabla
+                const { error: insertError } = await supabaseClient
+                    .from('trabajos')
+                    .insert([
+                        {
+                            titulo: title,
+                            imagen_url: publicUrl
+                        }
+                    ]);
+
+                if (insertError) throw insertError;
+
+                // Mostrar éxito
+                document.getElementById('loadingOverlay').classList.remove('active');
+                document.getElementById('successMessage').classList.add('active');
+                resetForm();
+
+                // Ocultar mensaje de éxito después de 3 segundos
+                setTimeout(() => {
+                    document.getElementById('successMessage').classList.remove('active');
+                }, 3000);
+
+            } catch (error) {
+                console.error('Error al subir:', error);
+                document.getElementById('loadingOverlay').classList.remove('active');
+                document.getElementById('errorMessage').textContent = 'Error: ' + error.message;
+                document.getElementById('errorMessage').classList.add('active');
+            }
+        }
+
+        // Cargar trabajos existentes
+        async function loadWorks() {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('trabajos')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                const worksList = document.getElementById('worksList');
+                const worksCount = document.getElementById('worksCount');
+                worksList.innerHTML = '';
+
+                // Actualizar contador
+                worksCount.textContent = data.length;
+
+                if (data.length === 0) {
+                    worksList.innerHTML = '<div class="empty-state">No hay trabajos cargados aún</div>';
+                    return;
+                }
+
+                data.forEach(work => {
+                    const item = document.createElement('div');
+                    item.className = 'work-item';
+                    item.innerHTML = `
+                        <img src="${work.imagen_url}" alt="${work.titulo}" class="work-thumbnail" />
+                        <div class="work-info">
+                            <div class="work-title">${work.titulo}</div>
+                            <div class="work-date">${new Date(work.created_at).toLocaleDateString('es-AR')}</div>
+                        </div>
+                        <div class="work-actions">
+                            <button class="action-btn edit-btn" onclick="editWork(${work.id}, '${work.titulo.replace(/'/g, "\\'")}')">Editar</button>
+                            <button class="action-btn delete-btn" onclick="deleteWork(${work.id}, '${work.imagen_url}')">Eliminar</button>
+                        </div>
+                    `;
+                    worksList.appendChild(item);
+                });
+            } catch (error) {
+                console.error('Error al cargar trabajos:', error);
+            }
+        }
+
+        // Editar trabajo
+        async function editWork(id, currentTitle) {
+            const newTitle = prompt('Nuevo título del trabajo:', currentTitle);
+            if (newTitle && newTitle.trim() !== '') {
+                try {
+                    const { error } = await supabaseClient
+                        .from('trabajos')
+                        .update({ titulo: newTitle.trim() })
+                        .eq('id', id);
+
+                    if (error) throw error;
+
+                    alert('Título actualizado exitosamente');
+                    loadWorks();
+                } catch (error) {
+                    console.error('Error al editar:', error);
+                    alert('Error al actualizar: ' + error.message);
+                }
+            }
+        }
+
+        // Eliminar trabajo
+        async function deleteWork(id, imageUrl) {
+            if (!confirm('¿Estás seguro de eliminar este trabajo? Esta acción no se puede deshacer.')) {
+                return;
+            }
+
+            try {
+                // Extraer nombre del archivo de la URL
+                const fileName = imageUrl.split('/').pop();
+
+                // Eliminar imagen del storage
+                const { error: storageError } = await supabaseClient
+                    .storage
+                    .from('trabajos')
+                    .remove([fileName]);
+
+                if (storageError) {
+                    console.warn('Error al eliminar imagen del storage:', storageError);
+                }
+
+                // Eliminar registro de la tabla
+                const { error: dbError } = await supabaseClient
+                    .from('trabajos')
+                    .delete()
+                    .eq('id', id);
+
+                if (dbError) throw dbError;
+
+                alert('Trabajo eliminado exitosamente');
+                loadWorks();
+            } catch (error) {
+                console.error('Error al eliminar:', error);
+                alert('Error al eliminar: ' + error.message);
+            }
+        }
+
+        // Cargar configuración
+        async function loadConfig() {
+            try {
+                // Buscar configuración de guardia
+                const { data: guardiaData, error: guardiaError } = await supabaseClient
+                    .from('configuracion')
+                    .select('*')
+                    .eq('clave', 'guardia')
+                    .single();
+
+                // Buscar configuración de banner
+                const { data: bannerData, error: bannerError } = await supabaseClient
+                    .from('configuracion')
+                    .select('*')
+                    .eq('clave', 'banner_aviso')
+                    .single();
+
+                if (guardiaError && guardiaError.code !== 'PGRST116') {
+                    console.error('Error al cargar guardia:', guardiaError);
+                }
+
+                if (bannerError && bannerError.code !== 'PGRST116') {
+                    console.error('Error al cargar banner:', bannerError);
+                }
+
+                // Setear valores de guardia
+                if (guardiaData) {
+                    document.getElementById('guardiaToggle').checked = guardiaData.activo || false;
+                    document.getElementById('guardiaText').value = guardiaData.valor || '';
+                }
+
+                // Setear valores de banner
+                if (bannerData) {
+                    document.getElementById('bannerToggle').checked = bannerData.activo || false;
+                    document.getElementById('bannerText').value = bannerData.valor || '';
+                }
+            } catch (error) {
+                console.error('Error al cargar configuración:', error);
+            }
+        }
+
+        // Guardar configuración
+        async function saveConfig() {
+            try {
+                const guardiaActivo = document.getElementById('guardiaToggle').checked;
+                const guardiaTexto = document.getElementById('guardiaText').value;
+                const bannerActivo = document.getElementById('bannerToggle').checked;
+                const bannerTexto = document.getElementById('bannerText').value;
+
+                // Actualizar guardia
+                const { error: guardiaError } = await supabaseClient
+                    .from('configuracion')
+                    .update({ activo: guardiaActivo, valor: guardiaTexto })
+                    .eq('clave', 'guardia');
+
+                if (guardiaError) throw guardiaError;
+
+                // Actualizar banner
+                const { error: bannerError } = await supabaseClient
+                    .from('configuracion')
+                    .update({ activo: bannerActivo, valor: bannerTexto })
+                    .eq('clave', 'banner_aviso');
+
+                if (bannerError) throw bannerError;
+
+                alert('✓ Configuración guardada correctamente');
+            } catch (error) {
+                console.error('Error al guardar configuración:', error);
+                alert('Error al guardar configuración: ' + error.message);
+            }
+        }
+
+        // Cargar precios
+        async function loadPrices() {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('precios')
+                    .select('*')
+                    .order('orden', { ascending: true });
+
+                if (error) throw error;
+
+                const pricesList = document.getElementById('pricesAdminList');
+                pricesList.innerHTML = '';
+
+                if (data.length === 0) {
+                    pricesList.innerHTML = '<div class="empty-state">No hay precios cargados</div>';
+                    return;
+                }
+
+                data.forEach(price => {
+                    const item = document.createElement('div');
+                    item.className = 'price-admin-item';
+                    item.innerHTML = `
+                        <div class="price-admin-info">
+                            <div class="price-admin-service">${price.servicio}</div>
+                            <div class="price-admin-order">Orden: ${price.orden}</div>
+                        </div>
+                        <input type="text" class="price-input" value="${price.precio}" onchange="updatePrice(${price.id}, this.value)" />
+                        <button class="action-btn delete-btn" onclick="deletePrice(${price.id})">Eliminar</button>
+                    `;
+                    pricesList.appendChild(item);
+                });
+            } catch (error) {
+                console.error('Error al cargar precios:', error);
+            }
+        }
+
+        // Agregar precio
+        async function addPrice() {
+            const servicio = document.getElementById('newPriceService').value.trim();
+            const precio = document.getElementById('newPriceValue').value.trim();
+
+            if (!servicio || !precio) {
+                alert('Por favor completá ambos campos');
+                return;
+            }
+
+            try {
+                // Obtener el máximo orden actual
+                const { data: existingPrices } = await supabaseClient
+                    .from('precios')
+                    .select('orden')
+                    .order('orden', { ascending: false })
+                    .limit(1);
+
+                const newOrder = existingPrices && existingPrices.length > 0 ? existingPrices[0].orden + 1 : 1;
+
+                const { error } = await supabaseClient
+                    .from('precios')
+                    .insert([{
+                        servicio: servicio,
+                        precio: precio,
+                        orden: newOrder
+                    }]);
+
+                if (error) throw error;
+
+                // Limpiar inputs
+                document.getElementById('newPriceService').value = '';
+                document.getElementById('newPriceValue').value = '';
+
+                alert('Precio agregado exitosamente');
+                loadPrices();
+            } catch (error) {
+                console.error('Error al agregar precio:', error);
+                alert('Error al agregar precio: ' + error.message);
+            }
+        }
+
+        // Actualizar precio
+        async function updatePrice(id, newValue) {
+            try {
+                const { error } = await supabaseClient
+                    .from('precios')
+                    .update({ precio: newValue })
+                    .eq('id', id);
+
+                if (error) throw error;
+
+                console.log('Precio actualizado');
+            } catch (error) {
+                console.error('Error al actualizar precio:', error);
+                alert('Error al actualizar precio: ' + error.message);
+            }
+        }
+
+        // Eliminar precio
+        async function deletePrice(id) {
+            if (!confirm('¿Estás seguro de eliminar este precio?')) {
+                return;
+            }
+
+            try {
+                const { error } = await supabaseClient
+                    .from('precios')
+                    .delete()
+                    .eq('id', id);
+
+                if (error) throw error;
+
+                alert('Precio eliminado exitosamente');
+                loadPrices();
+            } catch (error) {
+                console.error('Error al eliminar precio:', error);
+                alert('Error al eliminar precio: ' + error.message);
+            }
+        }
+
+        // Generar Presupuesto PDF
+        function generateBudgetPDF() {
+            const client = document.getElementById('budgetClient').value;
+            const contact = document.getElementById('budgetContact').value;
+            const equipment = document.getElementById('budgetEquipment').value;
+            const description = document.getElementById('budgetDescription').value;
+            const labor = parseFloat(document.getElementById('budgetLabor').value) || 0;
+            const materials = parseFloat(document.getElementById('budgetMaterials').value) || 0;
+            const validity = document.getElementById('budgetValidity').value;
+            const total = labor + materials;
+
+            if (!client || !equipment) {
+                alert('Por favor completá al menos el nombre del cliente y el equipo');
+                return;
+            }
+
+            const budgetNumber = 'PRES-' + Date.now().toString().slice(-8);
+            const date = new Date().toLocaleDateString('es-AR');
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Cargar logo
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.src = 'source/logo.png';
+
+            img.onload = function() {
+                // Configuración de colores
+                const blueColor = [63, 72, 204];
+                const grayColor = [100, 116, 139];
+
+                // Agregar logo centrado
+                const logoWidth = 40;
+                const logoHeight = 40;
+                const logoX = (210 - logoWidth) / 2; // Centrado horizontal (210 es el ancho A4 en mm)
+                doc.addImage(img, 'PNG', logoX, 15, logoWidth, logoHeight);
+
+                // Título y encabezado
+                doc.setFontSize(24);
+                doc.setTextColor(...blueColor);
+                doc.text('Tecno Frío', 105, 65, { align: 'center' });
+
+                doc.setFontSize(12);
+                doc.setTextColor(...grayColor);
+                doc.text('Servicio Técnico en Refrigeración', 105, 75, { align: 'center' });
+                doc.text('Federal, Entre Ríos', 105, 83, { align: 'center' });
+
+                // Marco del presupuesto
+                doc.setDrawColor(...blueColor);
+                doc.setLineWidth(0.5);
+                doc.roundedRect(20, 95, 170, 140, 3, 3, 'S');
+
+                // Número y fecha
+                doc.setFontSize(10);
+                doc.setTextColor(0, 0, 0);
+                doc.text(`N° Presupuesto: ${budgetNumber}`, 30, 110);
+                doc.text(`Fecha: ${date}`, 30, 118);
+                doc.text(`Válido por: ${validity} días`, 140, 110);
+
+                // Cliente y contacto
+                doc.setFontSize(10);
+                doc.text(`Cliente: ${client}`, 30, 130);
+                doc.text(`Contacto: ${contact}`, 30, 138);
+
+                // Equipo
+                doc.text(`Equipo: ${equipment}`, 30, 148);
+
+                // Descripción
+                doc.text('Descripción:', 30, 158);
+                const descLines = doc.splitTextToSize(description || 'Sin descripción', 140);
+                doc.text(descLines, 30, 166);
+
+                // Línea separadora
+                doc.setDrawColor(226, 232, 240);
+                doc.line(30, 185, 180, 185);
+
+                // Montos
+                const yPosition = 195;
+                doc.text(`Mano de obra: $${labor.toLocaleString('es-AR')}`, 30, yPosition);
+                doc.text(`Materiales: $${materials.toLocaleString('es-AR')}`, 30, yPosition + 8);
+
+                doc.setFontSize(14);
+                doc.setTextColor(...blueColor);
+                doc.setFont(undefined, 'bold');
+                doc.text(`TOTAL: $${total.toLocaleString('es-AR')}`, 30, yPosition + 20);
+
+                // Pie de página
+                doc.setFontSize(9);
+                doc.setTextColor(...grayColor);
+                doc.setFont(undefined, 'normal');
+                doc.text('Tecno Frío | Servicio Técnico Especializado', 105, 245, { align: 'center' });
+                doc.text('Federal, Entre Ríos | Tel: +54 9 3454 480828', 105, 252, { align: 'center' });
+
+                // Guardar PDF
+                doc.save(`presupuesto_${budgetNumber}.pdf`);
+            };
+
+            img.onerror = function() {
+                alert('Error al cargar el logo. Se generará el PDF sin logo.');
+                // Generar PDF sin logo
+                const blueColor = [63, 72, 204];
+                const grayColor = [100, 116, 139];
+
+                doc.setFontSize(24);
+                doc.setTextColor(...blueColor);
+                doc.text('Tecno Frío', 105, 30, { align: 'center' });
+
+                doc.setFontSize(12);
+                doc.setTextColor(...grayColor);
+                doc.text('Servicio Técnico en Refrigeración', 105, 40, { align: 'center' });
+                doc.text('Federal, Entre Ríos', 105, 48, { align: 'center' });
+
+                doc.setDrawColor(...blueColor);
+                doc.setLineWidth(0.5);
+                doc.roundedRect(20, 60, 170, 140, 3, 3, 'S');
+
+                doc.setFontSize(10);
+                doc.setTextColor(0, 0, 0);
+                doc.text(`N° Presupuesto: ${budgetNumber}`, 30, 75);
+                doc.text(`Fecha: ${date}`, 30, 83);
+                doc.text(`Válido por: ${validity} días`, 140, 75);
+
+                doc.text(`Cliente: ${client}`, 30, 95);
+                doc.text(`Contacto: ${contact}`, 30, 103);
+                doc.text(`Equipo: ${equipment}`, 30, 113);
+
+                doc.text('Descripción:', 30, 123);
+                const descLines = doc.splitTextToSize(description || 'Sin descripción', 140);
+                doc.text(descLines, 30, 131);
+
+                doc.setDrawColor(226, 232, 240);
+                doc.line(30, 150, 180, 150);
+
+                const yPosition = 160;
+                doc.text(`Mano de obra: $${labor.toLocaleString('es-AR')}`, 30, yPosition);
+                doc.text(`Materiales: $${materials.toLocaleString('es-AR')}`, 30, yPosition + 8);
+
+                doc.setFontSize(14);
+                doc.setTextColor(...blueColor);
+                doc.setFont(undefined, 'bold');
+                doc.text(`TOTAL: $${total.toLocaleString('es-AR')}`, 30, yPosition + 20);
+
+                doc.setFontSize(9);
+                doc.setTextColor(...grayColor);
+                doc.setFont(undefined, 'normal');
+                doc.text('Tecno Frío | Servicio Técnico Especializado', 105, 210, { align: 'center' });
+                doc.text('Federal, Entre Ríos | Tel: +54 9 3454 480828', 105, 217, { align: 'center' });
+
+                doc.save(`presupuesto_${budgetNumber}.pdf`);
+            };
+        }
+
+        // Generar Recibo PDF
+        function generateReceiptPDF() {
+            const client = document.getElementById('receiptClient').value;
+            const concept = document.getElementById('receiptConcept').value;
+            const warranty = document.getElementById('receiptWarranty').value;
+            const amount = parseFloat(document.getElementById('receiptAmount').value) || 0;
+            const payment = document.getElementById('receiptPayment').value;
+
+            if (!client || !concept) {
+                alert('Por favor completá el nombre del cliente y el concepto');
+                return;
+            }
+
+            const receiptNumber = 'REC-' + Date.now().toString().slice(-8);
+            const date = new Date().toLocaleDateString('es-AR');
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Cargar logo
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.src = 'source/logo.png';
+
+            img.onload = function() {
+                // Configuración de colores
+                const blueColor = [63, 72, 204];
+                const grayColor = [100, 116, 139];
+
+                // Agregar logo centrado
+                const logoWidth = 40;
+                const logoHeight = 40;
+                const logoX = (210 - logoWidth) / 2;
+                doc.addImage(img, 'PNG', logoX, 15, logoWidth, logoHeight);
+
+                // Título y encabezado
+                doc.setFontSize(24);
+                doc.setTextColor(...blueColor);
+                doc.text('Tecno Frío', 105, 65, { align: 'center' });
+
+                doc.setFontSize(12);
+                doc.setTextColor(...grayColor);
+                doc.text('Comprobante de Servicio', 105, 75, { align: 'center' });
+
+                // Marco del recibo
+                doc.setDrawColor(...blueColor);
+                doc.setLineWidth(0.5);
+                doc.roundedRect(20, 95, 170, 120, 3, 3, 'S');
+
+                // Número y fecha
+                doc.setFontSize(10);
+                doc.setTextColor(0, 0, 0);
+                doc.text(`N° Recibo: ${receiptNumber}`, 30, 110);
+                doc.text(`Fecha: ${date}`, 30, 118);
+
+                // Cliente
+                doc.text(`Cliente: ${client}`, 30, 130);
+
+                // Servicio realizado
+                doc.text('Servicio realizado:', 30, 140);
+                const conceptLines = doc.splitTextToSize(concept, 140);
+                doc.text(conceptLines, 30, 148);
+
+                // Garantía
+                doc.text(`Garantía: ${warranty}`, 30, 158);
+
+                // Línea separadora
+                doc.setDrawColor(226, 232, 240);
+                doc.line(30, 165, 180, 165);
+
+                // Monto y medio de pago
+                const yPosition = 175;
+                doc.text(`Monto cobrado: $${amount.toLocaleString('es-AR')}`, 30, yPosition);
+                doc.text(`Medio de pago: ${payment}`, 30, yPosition + 8);
+
+                // Firma
+                doc.setFontSize(10);
+                doc.setTextColor(...grayColor);
+                doc.text('_________________________', 105, 205, { align: 'center' });
+                doc.setTextColor(...blueColor);
+                doc.setFont(undefined, 'bold');
+                doc.text('Tecno Frío', 105, 212, { align: 'center' });
+                doc.setTextColor(...grayColor);
+                doc.setFont(undefined, 'normal');
+                doc.text('Firma digital', 105, 219, { align: 'center' });
+
+                // Pie de página
+                doc.setFontSize(9);
+                doc.text('Tecno Frío | Servicio Técnico Especializado', 105, 245, { align: 'center' });
+                doc.text('Federal, Entre Ríos | Tel: +54 9 3454 480828', 105, 252, { align: 'center' });
+
+                // Guardar PDF
+                doc.save(`recibo_${receiptNumber}.pdf`);
+            };
+
+            img.onerror = function() {
+                alert('Error al cargar el logo. Se generará el PDF sin logo.');
+                // Generar PDF sin logo
+                const blueColor = [63, 72, 204];
+                const grayColor = [100, 116, 139];
+
+                doc.setFontSize(24);
+                doc.setTextColor(...blueColor);
+                doc.text('Tecno Frío', 105, 30, { align: 'center' });
+
+                doc.setFontSize(12);
+                doc.setTextColor(...grayColor);
+                doc.text('Comprobante de Servicio', 105, 40, { align: 'center' });
+
+                doc.setDrawColor(...blueColor);
+                doc.setLineWidth(0.5);
+                doc.roundedRect(20, 60, 170, 120, 3, 3, 'S');
+
+                doc.setFontSize(10);
+                doc.setTextColor(0, 0, 0);
+                doc.text(`N° Recibo: ${receiptNumber}`, 30, 75);
+                doc.text(`Fecha: ${date}`, 30, 83);
+
+                doc.text(`Cliente: ${client}`, 30, 95);
+
+                doc.text('Servicio realizado:', 30, 105);
+                const conceptLines = doc.splitTextToSize(concept, 140);
+                doc.text(conceptLines, 30, 113);
+
+                doc.text(`Garantía: ${warranty}`, 30, 123);
+
+                doc.setDrawColor(226, 232, 240);
+                doc.line(30, 130, 180, 130);
+
+                const yPosition = 140;
+                doc.text(`Monto cobrado: $${amount.toLocaleString('es-AR')}`, 30, yPosition);
+                doc.text(`Medio de pago: ${payment}`, 30, yPosition + 8);
+
+                doc.setFontSize(10);
+                doc.setTextColor(...grayColor);
+                doc.text('_________________________', 105, 170, { align: 'center' });
+                doc.setTextColor(...blueColor);
+                doc.setFont(undefined, 'bold');
+                doc.text('Tecno Frío', 105, 177, { align: 'center' });
+                doc.setTextColor(...grayColor);
+                doc.setFont(undefined, 'normal');
+                doc.text('Firma digital', 105, 184, { align: 'center' });
+
+                doc.setFontSize(9);
+                doc.text('Tecno Frío | Servicio Técnico Especializado', 105, 210, { align: 'center' });
+                doc.text('Federal, Entre Ríos | Tel: +54 9 3454 480828', 105, 217, { align: 'center' });
+
+                doc.save(`recibo_${receiptNumber}.pdf`);
+            };
+        }
+
+        // Generar Sticker QR
+        function generateQRSticker() {
+            const qrContainer = document.getElementById('qrcode');
+            qrContainer.innerHTML = '';
+
+            new QRCode(qrContainer, {
+                text: 'https://tecno-frio.vercel.app',
+                width: 128,
+                height: 128,
+                colorDark: '#3f48cc',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
+
+        // Imprimir Sticker QR
+        function printQRSticker() {
+            const qrContainer = document.getElementById('qrcode');
+            if (qrContainer.innerHTML === '') {
+                alert('Primero generá el código QR');
+                return;
+            }
+
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                <head>
+                    <title>Sticker Tecno Frío</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            width: 10cm;
+                            height: 7cm;
+                            padding: 10px;
+                            margin: 0;
+                            box-sizing: border-box;
+                            border: 1px solid #000;
+                        }
+                        .header {
+                            text-align: center;
+                            margin-bottom: 8px;
+                        }
+                        .logo {
+                            width: 40px;
+                            height: 40px;
+                            margin: 0 auto 5px auto;
+                        }
+                        .header h1 {
+                            color: #3f48cc;
+                            margin: 0;
+                            font-size: 12px;
+                        }
+                        .header p {
+                            margin: 2px 0;
+                            font-size: 7px;
+                            color: #64748B;
+                        }
+                        .qr-container {
+                            text-align: center;
+                            margin: 8px 0;
+                        }
+                        .qr-container img {
+                            width: 70px;
+                            height: 70px;
+                        }
+                        .footer {
+                            text-align: center;
+                            margin-top: 8px;
+                        }
+                        .footer p {
+                            margin: 3px 0;
+                            font-size: 7px;
+                            color: #64748B;
+                        }
+                        .handwritten {
+                            border-top: 1px dashed #000;
+                            padding-top: 4px;
+                            margin-top: 8px;
+                        }
+                        .handwritten p {
+                            margin: 2px 0;
+                            font-size: 8px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <img src="source/logo.png" alt="Tecno Frío Logo" class="logo" />
+                        <h1>Tecno Frío</h1>
+                        <p>Servicio Técnico Especializado</p>
+                        <p>Refrigeración y Climatización</p>
+                    </div>
+                    <div class="qr-container">
+                        ${qrContainer.innerHTML}
+                    </div>
+                    <div class="footer">
+                        <p><strong>Federal (E.R.)</strong></p>
+                        <p>Tel: +54 9 3454 480828</p>
+                    </div>
+                    <div class="handwritten">
+                        <p>Fecha: ___ / ___ / ___ | Service: ____________</p>
+                    </div>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            printWindow.print();
+        }
+
+        // Permitir Enter para login
+        document.getElementById('password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                login();
+            }
+        });
+
+        // Cargar datos al iniciar sesión
+        const originalLogin = login;
+        login = function() {
+            originalLogin();
+            if (document.getElementById('uploadSection').classList.contains('active')) {
+                loadWorks();
+                loadConfig();
+                loadPrices();
+            }
+        };
+    </script>
+</body>
+</html>
